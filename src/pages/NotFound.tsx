@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Home, ArrowLeft } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen bg-brand-soft-blue flex items-center justify-center px-6">
+    <>
+      <SEO 
+        title="Page Not Found"
+        description="The page you're looking for doesn't exist or has been moved."
+        noindex={true}
+      />
+      <div className="min-h-screen bg-brand-soft-blue flex items-center justify-center px-6">
       <motion.div 
         className="text-center max-w-md"
         initial={{ opacity: 0, y: 20 }}
@@ -36,6 +43,7 @@ const NotFound = () => {
         </div>
       </motion.div>
     </div>
+    </>
   );
 };
 

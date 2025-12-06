@@ -7,6 +7,7 @@ import ApproachTimeline from "@/components/marketing/ApproachTimeline";
 import PrimaryCTASection from "@/components/marketing/PrimaryCTASection";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import PageTransition from "@/components/PageTransition";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { 
   FileText, Shield, Users, ClipboardCheck, Monitor,
@@ -119,6 +120,11 @@ const industries = [
 const Index = () => {
   return (
     <PageTransition>
+      <SEO 
+        title="Governance & Compliance Consulting"
+        description="Momentum Edge Consulting helps regulated organizations build clear, sustainable governance structures. Policy development, compliance readiness, and IT governance for healthcare, utilities, and compliance-driven firms."
+        canonical="/"
+      />
       <div className="min-h-screen bg-background">
         <Header />
         

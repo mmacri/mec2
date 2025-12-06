@@ -6,6 +6,7 @@ import PrimaryCTASection from "@/components/marketing/PrimaryCTASection";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import PageTransition from "@/components/PageTransition";
 import useScrollToHash from "@/hooks/useScrollToHash";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Stethoscope, Zap, Building } from "lucide-react";
 
@@ -56,6 +57,11 @@ const IndustriesPage = () => {
   
   return (
     <PageTransition>
+      <SEO 
+        title="Industries We Serve"
+        description="Specialized governance consulting for healthcare, utilities, and compliance-driven organizations. We understand your industry's unique regulatory challenges."
+        canonical="/industries"
+      />
       <div className="min-h-screen bg-background">
         <Header />
         

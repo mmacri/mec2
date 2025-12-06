@@ -7,6 +7,7 @@ import PrimaryCTASection from "@/components/marketing/PrimaryCTASection";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import PageTransition from "@/components/PageTransition";
 import useScrollToHash from "@/hooks/useScrollToHash";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Target, Users, Shield, Lightbulb, CheckCircle } from "lucide-react";
 
@@ -76,6 +77,11 @@ const AboutPage = () => {
   
   return (
     <PageTransition>
+      <SEO 
+        title="About Us"
+        description="Learn about Momentum Edge Consulting's mission to modernize governance for regulated organizations. Our practical, human-centered approach delivers sustainable governance structures."
+        canonical="/about"
+      />
       <div className="min-h-screen bg-background">
         <Header />
         
