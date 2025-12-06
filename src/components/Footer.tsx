@@ -9,7 +9,8 @@ const Footer = () => {
     { name: "Governance & Process Design", path: "/services#governance" },
     { name: "Staffing & Responsibility Modeling", path: "/services#staffing" },
     { name: "Compliance & Audit Readiness", path: "/services#compliance" },
-    { name: "IT Governance & Advisory", path: "/services#it-governance" }
+    { name: "IT Governance & Advisory", path: "/services#it-governance" },
+    { name: "Technology Advisory", path: "/services#technology" }
   ];
 
   const industries = [
