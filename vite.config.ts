@@ -8,7 +8,7 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => {
   // For GitHub Pages deployment, use the repository name as base
   // For custom domain (mikemacri.com), use root path
-  const base = process.env.GITHUB_ACTIONS === 'true' ? "/momentum-edge-blueprint/" : "/";
+  const base = process.env.GITHUB_ACTIONS === 'true' ? "/mec2/" : "/";
 
   return {
     base,
