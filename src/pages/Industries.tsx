@@ -21,7 +21,8 @@ const medicalSolutions = [
   { text: "Patient intake flow clarification and optimization" },
   { text: "Responsibility mapping across providers, front office, billing" },
   { text: "Policy updates — clinical and administrative SOPs" },
-  { text: "Compliance and audit readiness embedded into operations" }
+  { text: "Compliance and audit readiness embedded into operations" },
+  { text: "Technical support for healthcare systems and IT infrastructure" }
 ];
 
 const utilityProblems = [
@@ -35,7 +36,8 @@ const utilitySolutions = [
   { text: "Governance frameworks aligned with operational reality" },
   { text: "Control catalogs mapped to regulatory requirements" },
   { text: "Evidence management process design" },
-  { text: "Maturity assessment and audit preparation" }
+  { text: "Maturity assessment and audit preparation" },
+  { text: "Technical support for critical infrastructure systems" }
 ];
 
 const complianceProblems = [
@@ -49,7 +51,8 @@ const complianceSolutions = [
   { text: "Policy and control alignment with actual workflows" },
   { text: "Responsibility design and RACI clarity" },
   { text: "SOPs for key operational processes" },
-  { text: "IT governance clarity and technology ownership" }
+  { text: "IT governance clarity and technology ownership" },
+  { text: "Technical support for compliance and security systems" }
 ];
 
 const IndustriesPage = () => {
