@@ -1,10 +1,10 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
+import { AnimatePresence } from "framer-motion";
 import Index from "./pages/Index";
 import ServicesPage from "./pages/Services";
 import ExpertisePage from "./pages/Expertise";
@@ -22,7 +22,6 @@ const queryClient = new QueryClient({
   },
 });
 
-// Error fallback component
 const ErrorFallback = ({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) => {
   console.error("Application error:", error);
   
@@ -42,19 +41,28 @@ const ErrorFallback = ({ error, resetErrorBoundary }: { error: Error; resetError
   );
 };
 
-const App = () => {
-  console.log("App component rendering...");
-  console.log("Environment:", import.meta.env.MODE);
-  console.log("Base URL:", import.meta.env.BASE_URL);
-  console.log("Production:", import.meta.env.PROD);
-  console.log("Current hostname:", window.location.hostname);
+// Animated routes wrapper
+const AnimatedRoutes = () => {
+  const location = useLocation();
   
-  // Only use basename for GitHub Pages, not for custom domains
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Index />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/expertise" element={<ExpertisePage />} />
+        <Route path="/industries" element={<IndustriesPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
+const App = () => {
   const isGitHubPages = window.location.hostname === 'mikemacri.github.io';
   const basename = isGitHubPages ? "/momentum-edge-blueprint" : undefined;
-  
-  console.log("Is GitHub Pages:", isGitHubPages);
-  console.log("Router basename:", basename);
   
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={(error) => console.error("Error boundary caught:", error)}>
@@ -63,15 +71,7 @@ const App = () => {
           <Toaster />
           <Sonner />
           <BrowserRouter basename={basename}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/expertise" element={<ExpertisePage />} />
-              <Route path="/industries" element={<IndustriesPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <AnimatedRoutes />
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>

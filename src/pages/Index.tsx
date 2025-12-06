@@ -6,6 +6,7 @@ import WhoWeServe from "@/components/WhoWeServe";
 import HowWeWork from "@/components/HowWeWork";
 import HomeCTA from "@/components/HomeCTA";
 import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition";
 import { ErrorBoundary } from "react-error-boundary";
 
 const PageErrorFallback = ({ error }: { error: Error }) => {
@@ -23,16 +24,18 @@ const PageErrorFallback = ({ error }: { error: Error }) => {
 const Index = () => {
   return (
     <ErrorBoundary FallbackComponent={PageErrorFallback}>
-      <div className="min-h-screen bg-white">
-        <Header />
-        <Hero />
-        <WhyHireUs />
-        <WhatWeDo />
-        <WhoWeServe />
-        <HowWeWork />
-        <HomeCTA />
-        <Footer />
-      </div>
+      <PageTransition>
+        <div className="min-h-screen bg-white">
+          <Header />
+          <Hero />
+          <WhyHireUs />
+          <WhatWeDo />
+          <WhoWeServe />
+          <HowWeWork />
+          <HomeCTA />
+          <Footer />
+        </div>
+      </PageTransition>
     </ErrorBoundary>
   );
 };

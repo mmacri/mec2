@@ -1,17 +1,19 @@
-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
+import PageTransition from "@/components/PageTransition";
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <div className="pt-20">
-        <Contact />
+    <PageTransition>
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="pt-8">
+          <Contact />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </PageTransition>
   );
 };
 
