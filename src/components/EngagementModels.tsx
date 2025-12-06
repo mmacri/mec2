@@ -50,11 +50,11 @@ const EngagementModels = () => {
   ];
 
   return (
-    <section className="section-padding bg-slate-50">
+    <section className="section-padding hero-engagement">
       <div className="container mx-auto px-6">
         <ScrollAnimation className="text-center mb-16">
-          <h2 className="section-title">Engagement Models</h2>
-          <p className="section-subtitle">
+          <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">Engagement Models</h2>
+          <p className="text-xl text-white/70 max-w-3xl mx-auto">
             Flexible engagement options designed to meet your organization where it is today.
           </p>
         </ScrollAnimation>
@@ -67,14 +67,14 @@ const EngagementModels = () => {
                 <motion.div 
                   className={`relative rounded-2xl p-8 transition-all duration-300 h-full ${
                     model.highlight 
-                      ? 'bg-slate-900 text-white shadow-2xl lg:scale-105' 
-                      : 'bg-white border border-slate-200'
+                      ? 'bg-white text-navy shadow-2xl lg:scale-105' 
+                      : 'bg-white/10 backdrop-blur-sm border border-white/20 text-white'
                   }`}
                   whileHover={{ 
                     y: -8, 
                     boxShadow: model.highlight 
-                      ? "0 30px 60px -12px rgba(0, 0, 0, 0.35)" 
-                      : "0 25px 50px -12px rgba(0, 0, 0, 0.15)"
+                      ? "0 30px 60px -12px hsla(var(--navy), 0.35)" 
+                      : "0 25px 50px -12px hsla(var(--navy), 0.25)"
                   }}
                   transition={{ duration: 0.3 }}
                 >
@@ -85,7 +85,7 @@ const EngagementModels = () => {
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.5, type: "spring" }}
                     >
-                      <span className="bg-teal-500 text-white text-xs font-bold px-4 py-1 rounded-full">
+                      <span className="bg-teal text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg">
                         MOST POPULAR
                       </span>
                     </motion.div>
@@ -93,38 +93,38 @@ const EngagementModels = () => {
                   
                   <motion.div 
                     className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${
-                      model.highlight ? 'bg-teal-500/20' : 'bg-teal-50'
+                      model.highlight ? 'bg-teal-light' : 'bg-white/20'
                     }`}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                   >
-                    <IconComponent className={`w-7 h-7 ${model.highlight ? 'text-teal-400' : 'text-teal-600'}`} />
+                    <IconComponent className={`w-7 h-7 ${model.highlight ? 'text-teal-dark' : 'text-teal-light'}`} />
                   </motion.div>
                   
                   <div className="mb-2">
                     <span className={`text-xs font-bold uppercase tracking-wider ${
-                      model.highlight ? 'text-teal-400' : 'text-teal-600'
+                      model.highlight ? 'text-teal' : 'text-teal-light'
                     }`}>
                       {model.subtitle}
                     </span>
                   </div>
                   
-                  <h3 className={`text-xl font-bold mb-2 ${model.highlight ? 'text-white' : 'text-slate-900'}`}>
+                  <h3 className={`text-xl font-bold mb-2 ${model.highlight ? 'text-navy' : 'text-white'}`}>
                     {model.title}
                   </h3>
                   
                   <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium mb-4 ${
-                    model.highlight ? 'bg-white/10 text-white' : 'bg-slate-100 text-slate-600'
+                    model.highlight ? 'bg-sand text-slate' : 'bg-white/10 text-white/90'
                   }`}>
                     {model.duration}
                   </div>
                   
-                  <p className={`mb-6 ${model.highlight ? 'text-slate-300' : 'text-slate-600'}`}>
+                  <p className={`mb-6 ${model.highlight ? 'text-slate' : 'text-white/70'}`}>
                     {model.description}
                   </p>
                   
                   <div>
                     <div className={`text-sm font-semibold uppercase tracking-wide mb-3 ${
-                      model.highlight ? 'text-white' : 'text-slate-900'
+                      model.highlight ? 'text-navy' : 'text-white'
                     }`}>
                       Includes:
                     </div>
@@ -137,8 +137,8 @@ const EngagementModels = () => {
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.1 * idx }}
                         >
-                          <span className={`mr-2 ${model.highlight ? 'text-teal-400' : 'text-teal-500'}`}>✓</span>
-                          <span className={model.highlight ? 'text-slate-300' : 'text-slate-600'}>{item}</span>
+                          <span className={`mr-2 ${model.highlight ? 'text-teal' : 'text-teal-light'}`}>✓</span>
+                          <span className={model.highlight ? 'text-slate' : 'text-white/70'}>{item}</span>
                         </motion.li>
                       ))}
                     </ul>
@@ -152,7 +152,7 @@ const EngagementModels = () => {
         <ScrollAnimation delay={0.3} className="text-center mt-16">
           <motion.a 
             href="mailto:momentumedgeconsulting@gmail.com?subject=Engagement Discussion"
-            className="cta-primary group"
+            className="inline-flex items-center justify-center font-semibold px-8 py-4 rounded-xl transition-all duration-300 bg-white text-navy hover:bg-teal-light shadow-lg hover:shadow-xl group"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
           >
