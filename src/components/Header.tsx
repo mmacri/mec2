@@ -66,13 +66,11 @@ const Header = () => {
             <img 
               src={logoPath}
               alt="Momentum Edge Consulting" 
-              className={`h-14 w-auto md:h-16 lg:h-20 object-contain transition-all duration-300 ${
-                showTransparent ? "brightness-0 invert" : ""
-              }`}
+              className="h-14 w-auto md:h-16 lg:h-20 object-contain"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
                 const fallback = document.createElement('div');
-                fallback.innerHTML = `<span class="text-xl font-bold ${showTransparent ? 'text-white' : 'text-navy'}">Momentum Edge</span>`;
+                fallback.innerHTML = `<span class="text-xl font-bold text-navy">Momentum Edge</span>`;
                 e.currentTarget.parentNode?.appendChild(fallback);
               }}
             />
