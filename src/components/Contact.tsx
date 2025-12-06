@@ -1,39 +1,64 @@
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useForm } from "react-hook-form";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
-import { CheckCircle } from "lucide-react";
+import { useState } from "react";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name must be less than 100 characters"),
+  organization: z.string().trim().min(2, "Organization must be at least 2 characters").max(100, "Organization must be less than 100 characters"),
   email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
-  company: z.string().trim().max(100, "Company name must be less than 100 characters").optional(),
-  phone: z.string().trim().max(20, "Phone must be less than 20 characters").optional(),
-  message: z.string().trim().min(10, "Message must be at least 10 characters").max(2000, "Message must be less than 2000 characters")
+  challenges: z.array(z.string()).min(1, "Please select at least one challenge"),
+  outcome: z.string().trim().min(10, "Please describe your desired outcome").max(2000, "Description must be less than 2000 characters")
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const Contact = () => {
   const { toast } = useToast();
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema)
+  const [selectedChallenges, setSelectedChallenges] = useState<string[]>([]);
+  
+  const { register, handleSubmit, formState: { errors }, reset, control } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      challenges: []
+    }
   });
 
+  const challenges = [
+    "Policies outdated or unclear",
+    "Roles and responsibilities undefined",
+    "Compliance gaps or audit concerns",
+    "Governance structures need formalization",
+    "Process documentation lacking",
+    "IT governance needs improvement",
+    "Preparing for regulatory inspection",
+    "Other"
+  ];
+
+  const handleChallengeToggle = (challenge: string, checked: boolean) => {
+    if (checked) {
+      setSelectedChallenges(prev => [...prev, challenge]);
+    } else {
+      setSelectedChallenges(prev => prev.filter(c => c !== challenge));
+    }
+  };
+
   const onSubmit = (data: ContactFormData) => {
-    const subject = encodeURIComponent("Technical Engagement Request");
+    const subject = encodeURIComponent("Governance & Compliance Assessment Request");
+    const challengesList = data.challenges.join(", ");
     const body = encodeURIComponent(
       `Name: ${data.name}\n` +
-      `Email: ${data.email}\n` +
-      `Company: ${data.company || "Not provided"}\n` +
-      `Phone: ${data.phone || "Not provided"}\n\n` +
-      `Message:\n${data.message}`
+      `Organization: ${data.organization}\n` +
+      `Email: ${data.email}\n\n` +
+      `Current Challenges:\n${challengesList}\n\n` +
+      `Desired Outcome:\n${data.outcome}`
     );
     
     window.location.href = `mailto:momentumedgeconsulting@gmail.com?subject=${subject}&body=${body}`;
@@ -44,76 +69,34 @@ const Contact = () => {
     });
     
     reset();
+    setSelectedChallenges([]);
   };
-
-  const services = [
-    "Technology Strategy & CIO Advisory",
-    "GRC & InfoSec Solutions for Medium, Enterprise, State and Federal", 
-    "AI Solutions & Governance",
-    "Cybersecurity & Risk Management",
-    "Cloud Infrastructure & Migration",
-    "Partner Enablement & Strategic Alliances"
-  ];
-
-  const stats = [
-    { label: "Years of Technology Advisory", value: "25+" },
-    { label: "Successful IT Implementations", value: "1000's" },
-    { label: "Dental & Medical Practice Management Solutions", value: "✓" },
-    { label: "Small to Medium Office Management Solutions", value: "✓" }
-  ];
 
   return (
     <section id="contact" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-8 heading-enhanced">
-              Let's Transform Your Technology Strategy
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-6 heading-enhanced">
+              Let's Bring Clarity and Confidence to Your Organization
             </h2>
-            <p className="text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
-              Ready to accelerate your business with strategic IT solutions? Complete the form below for a complimentary 
-              technology assessment and discover how we can help you achieve your goals.
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Tell us about your current challenges and what you'd like to achieve.
             </p>
           </div>
 
-          {/* Main Contact Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-200">
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">Get Your Free Technology Assessment</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Schedule a complimentary consultation to discuss your technology challenges and discover 
-                opportunities for growth and optimization.
-              </p>
-              
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center">
-                  <CheckCircle className="text-primary mr-3" size={20} />
-                  <span className="font-medium text-gray-700">30-minute strategic consultation</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="text-primary mr-3" size={20} />
-                  <span className="font-medium text-gray-700">Technology roadmap recommendations</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="text-primary mr-3" size={20} />
-                  <span className="font-medium text-gray-700">Cost optimization opportunities</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="text-primary mr-3" size={20} />
-                  <span className="font-medium text-gray-700">No obligation or pressure</span>
-                </div>
-              </div>
-
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* Contact Form */}
+          <Card className="bg-white rounded-xl p-8 lg:p-10 shadow-lg border border-gray-200">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="name">Name *</Label>
+                  <Label htmlFor="name" className="text-base font-semibold">Name *</Label>
                   <Input 
                     id="name"
                     {...register("name")}
-                    placeholder="John Doe"
-                    className="mt-1"
+                    placeholder="Your name"
+                    className="mt-2 h-12"
                   />
                   {errors.name && (
                     <p className="text-sm text-red-500 mt-1">{errors.name.message}</p>
@@ -121,104 +104,94 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="email">Email *</Label>
+                  <Label htmlFor="organization" className="text-base font-semibold">Organization *</Label>
                   <Input 
-                    id="email"
-                    type="email"
-                    {...register("email")}
-                    placeholder="john@company.com"
-                    className="mt-1"
+                    id="organization"
+                    {...register("organization")}
+                    placeholder="Your organization"
+                    className="mt-2 h-12"
                   />
-                  {errors.email && (
-                    <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+                  {errors.organization && (
+                    <p className="text-sm text-red-500 mt-1">{errors.organization.message}</p>
                   )}
                 </div>
-
-                <div>
-                  <Label htmlFor="company">Company</Label>
-                  <Input 
-                    id="company"
-                    {...register("company")}
-                    placeholder="Your Company Name"
-                    className="mt-1"
-                  />
-                  {errors.company && (
-                    <p className="text-sm text-red-500 mt-1">{errors.company.message}</p>
-                  )}
-                </div>
-
-                <div>
-                  <Label htmlFor="phone">Phone</Label>
-                  <Input 
-                    id="phone"
-                    type="tel"
-                    {...register("phone")}
-                    placeholder="(555) 123-4567"
-                    className="mt-1"
-                  />
-                  {errors.phone && (
-                    <p className="text-sm text-red-500 mt-1">{errors.phone.message}</p>
-                  )}
-                </div>
-
-                <div>
-                  <Label htmlFor="message">Message *</Label>
-                  <Textarea 
-                    id="message"
-                    {...register("message")}
-                    placeholder="Tell us about your technology needs and challenges..."
-                    className="mt-1 min-h-[120px]"
-                  />
-                  {errors.message && (
-                    <p className="text-sm text-red-500 mt-1">{errors.message.message}</p>
-                  )}
-                </div>
-
-                <Button 
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary-dark hover:to-accent-dark text-white font-semibold text-lg px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
-                >
-                  Request Free Assessment
-                </Button>
-              </form>
-            </div>
-
-            {/* Services Overview */}
-            <div className="bg-slate-900 rounded-xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-6">How We Can Help</h3>
-              <p className="text-gray-300 mb-6 leading-relaxed">
-                With over 25 years of technology leadership experience, we provide strategic guidance 
-                and hands-on implementation across all areas of business technology.
-              </p>
-              
-              <div className="space-y-3 mb-8">
-                {services.map((service, index) => (
-                  <div key={index} className="flex items-center">
-                    <span className="text-primary mr-3 font-bold">✓</span>
-                    <span className="font-medium">{service}</span>
-                  </div>
-                ))}
               </div>
 
-              {/* Stats Section */}
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                {stats.map((stat, index) => (
-                  <div key={index} className="bg-white/5 rounded-lg p-4 border border-white/10">
-                    <div className="text-2xl font-bold text-primary mb-1">{stat.value}</div>
-                    <div className="text-sm text-gray-300">{stat.label}</div>
-                  </div>
-                ))}
+              <div>
+                <Label htmlFor="email" className="text-base font-semibold">Email *</Label>
+                <Input 
+                  id="email"
+                  type="email"
+                  {...register("email")}
+                  placeholder="your.email@organization.com"
+                  className="mt-2 h-12"
+                />
+                {errors.email && (
+                  <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+                )}
               </div>
 
-              <div className="p-4 bg-primary/20 rounded-lg border border-primary/30">
-                <h4 className="font-bold text-primary mb-2">Flexible Engagement Models</h4>
-                <p className="text-gray-300 text-sm">
-                  Project-based consulting, ongoing strategic advisory, or comprehensive managed services - 
-                  we adapt to your needs and budget.
-                </p>
+              <div>
+                <Label className="text-base font-semibold mb-4 block">What are your current challenges? * (select all that apply)</Label>
+                <Controller
+                  name="challenges"
+                  control={control}
+                  render={({ field }) => (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {challenges.map((challenge) => (
+                        <div 
+                          key={challenge}
+                          className="flex items-center space-x-3 p-3 rounded-lg border border-gray-200 hover:border-teal-300 hover:bg-teal-50/50 transition-all duration-200"
+                        >
+                          <Checkbox
+                            id={challenge}
+                            checked={selectedChallenges.includes(challenge)}
+                            onCheckedChange={(checked) => {
+                              handleChallengeToggle(challenge, checked as boolean);
+                              if (checked) {
+                                field.onChange([...field.value, challenge]);
+                              } else {
+                                field.onChange(field.value.filter((c: string) => c !== challenge));
+                              }
+                            }}
+                          />
+                          <label 
+                            htmlFor={challenge}
+                            className="text-sm font-medium text-gray-700 cursor-pointer flex-1"
+                          >
+                            {challenge}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                />
+                {errors.challenges && (
+                  <p className="text-sm text-red-500 mt-2">{errors.challenges.message}</p>
+                )}
               </div>
-            </div>
-          </div>
+
+              <div>
+                <Label htmlFor="outcome" className="text-base font-semibold">What outcome do you want to achieve? *</Label>
+                <Textarea 
+                  id="outcome"
+                  {...register("outcome")}
+                  placeholder="Describe your goals — for example: 'We need to prepare for an upcoming audit' or 'We want to formalize our governance structure before scaling...'"
+                  className="mt-2 min-h-[150px]"
+                />
+                {errors.outcome && (
+                  <p className="text-sm text-red-500 mt-1">{errors.outcome.message}</p>
+                )}
+              </div>
+
+              <Button 
+                type="submit"
+                className="w-full bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold text-lg px-8 py-6 rounded-lg transition-all duration-300 hover:scale-[1.02] shadow-lg"
+              >
+                Request an Assessment
+              </Button>
+            </form>
+          </Card>
         </div>
       </div>
     </section>

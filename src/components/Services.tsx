@@ -1,122 +1,78 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Target, Shield, Hospital, Bot, Cloud, Building2, Handshake, BarChart3 } from "lucide-react";
+import { FileText, GitBranch, Users, ClipboardCheck, Monitor } from "lucide-react";
 
 const Services = () => {
   const services = [
     {
-      id: "vcio",
-      title: "Virtual CIO & IT Strategy",
-      description: "Strategic technology leadership and executive-level IT guidance for businesses that need CIO expertise without the full-time cost.",
-      features: [
-        "Technology strategy and multi-year roadmap development",
-        "IT budget planning and investment optimization", 
-        "Digital transformation and growth planning",
-        "Vendor evaluation and negotiation support",
-        "Executive reporting and board-level IT presentations"
-      ],
-      icon: Target,
-      color: "text-blue-500"
+      id: "policy",
+      title: "Policy & Control Development",
+      description: "We create policies and controls that reflect the way your organization actually works — not templates copied from the internet.",
+      icon: FileText,
+      color: "text-blue-500",
+      bgColor: "bg-blue-50",
+      deliverables: [
+        "Policies in plain language",
+        "Control catalogs with owners, frequency, evidence expectations",
+        "Mapping to regulatory or operational frameworks"
+      ]
     },
     {
-      id: "vciso", 
-      title: "Virtual CISO & GRC Advisory",
-      description: "Strategic cybersecurity leadership, governance, risk management, and compliance (GRC) guidance to protect your business and meet regulatory requirements across all industries.",
-      features: [
-        "Cybersecurity strategy and comprehensive risk assessment",
-        "Compliance frameworks (HIPAA, SOC 2, NIST, ISO 27001, GDPR)",
-        "Information security policy development and governance",
-        "Security program management and maturity assessment",
-        "Incident response planning, breach management, and forensics",
-        "Security awareness training and culture development"
-      ],
-      icon: Shield,
-      color: "text-yellow-500"
+      id: "governance",
+      title: "Governance & Process Design",
+      description: "Organizations need more than documents — they need structure.",
+      icon: GitBranch,
+      color: "text-teal-500",
+      bgColor: "bg-teal-50",
+      deliverables: [
+        "Process flows",
+        "Standard Operating Procedures (SOPs)",
+        "RACI charts",
+        "Committee structures",
+        "Decision-rights definitions"
+      ]
     },
     {
-      id: "healthcare",
-      title: "Healthcare IT & Compliance Solutions",
-      description: "Specialized technology management for healthcare organizations with comprehensive HIPAA compliance, regulatory adherence, and information security programs.",
-      features: [
-        "HIPAA compliance audits, gap analysis, and implementation",
-        "Healthcare information security and privacy programs",
-        "EHR/EMR system optimization, integration, and support",
-        "Dental and medical practice technology management",
-        "Patient data security, encryption, and access controls",
-        "Telehealth infrastructure and secure communications"
-      ],
-      icon: Hospital,
-      color: "text-red-500"
+      id: "staffing",
+      title: "Staffing & Responsibility Modeling",
+      description: "Clarifying who does what eliminates risk and frustration.",
+      icon: Users,
+      color: "text-purple-500",
+      bgColor: "bg-purple-50",
+      deliverables: [
+        "Role definitions",
+        "RACI models",
+        "Gap and overlap analysis",
+        "Responsibility alignment matrix"
+      ]
     },
     {
-      id: "ai",
-      title: "AI Solutions & Guidance",
-      description: "Responsible AI implementation with custom applications, automation strategies, and governance frameworks for ethical AI adoption.",
-      features: [
-        "AI strategy development and opportunity assessment",
-        "Custom AI application development and integration",
-        "AI governance frameworks and ethical guidelines",
-        "Compliance with emerging AI regulations (EU AI Act, etc.)",
-        "AI automation and workflow optimization"
-      ],
-      icon: Bot,
-      color: "text-purple-500"
+      id: "compliance",
+      title: "Compliance & Audit Readiness",
+      description: "We prepare your organization for any regulatory review.",
+      icon: ClipboardCheck,
+      color: "text-orange-500",
+      bgColor: "bg-orange-50",
+      deliverables: [
+        "Evidence plans",
+        "Maturity assessments",
+        "Audit packets",
+        "Remediation plans",
+        "Mock audit sessions"
+      ]
     },
     {
-      id: "cloud",
-      title: "Cloud & IT Infrastructure",
-      description: "Complete cloud migrations, infrastructure optimization, and modern IT architecture design for scalable business growth.",
-      features: [
-        "Office 365/Microsoft 365 implementation and migration",
-        "Cloud strategy and multi-cloud architecture design",
-        "Server virtualization and infrastructure modernization",
-        "Backup and disaster recovery solutions",
-        "Network design and security implementation"
-      ],
-      icon: Cloud,
-      color: "text-cyan-500"
-    },
-    {
-      id: "small-office",
-      title: "Small Office & Remote IT Setup",
-      description: "Complete IT solutions for small offices, remote teams, and business relocations with ongoing support and vendor coordination.",
-      features: [
-        "New office IT setup and technology deployment",
-        "Office relocation and IT infrastructure moves",
-        "Remote work solutions and secure connectivity",
-        "Vendor coordination (ISP, telecom, hardware providers)",
-        "Strategic IT support and maintenance planning"
-      ],
-      icon: Building2,
-      color: "text-orange-500"
-    },
-    {
-      id: "partner",
-      title: "Partner & Channel Strategy",
-      description: "Strategic alliance development and partner program creation for technology companies and solution providers seeking growth.",
-      features: [
-        "Partner program development and enablement frameworks",
-        "Channel strategy and go-to-market planning",
-        "Technical enablement and solution training programs",
-        "Partner portal development and digital enablement",
-        "Joint business planning and revenue acceleration"
-      ],
-      icon: Handshake,
-      color: "text-green-500"
-    },
-    {
-      id: "projects",
-      title: "IT Projects & Technology Assessments",
-      description: "Comprehensive technology audits, strategic assessments, and project-based implementations with defined scope and timeline.",
-      features: [
-        "Complete IT environment audits and assessments",
-        "Technology refresh and upgrade projects",
-        "Compliance readiness assessments and gap analysis",
-        "Vendor evaluation and procurement advisory",
-        "Project management and implementation oversight"
-      ],
-      icon: BarChart3,
-      color: "text-indigo-500"
+      id: "it-governance",
+      title: "IT Governance & Advisory",
+      description: "Technology governance for small and mid-size regulated organizations.",
+      icon: Monitor,
+      color: "text-indigo-500",
+      bgColor: "bg-indigo-50",
+      deliverables: [
+        "Access and change governance",
+        "System responsibility structures",
+        "Technology process documentation",
+        "IT roadmap alignment"
+      ]
     }
   ];
 
@@ -125,50 +81,49 @@ const Services = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-8 heading-enhanced">
-            Comprehensive Technology Solutions
+            Our Services
           </h2>
           <p className="text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
-            From strategic CIO leadership to hands-on implementation, we provide end-to-end technology consulting 
-            with flexible engagement models and 100% vendor-neutral guidance.
+            We help regulated organizations build the policies, controls, governance structures, 
+            and operational processes they need to operate with confidence.
           </p>
-          
-          <div className="mt-8 bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-6 max-w-4xl mx-auto border border-teal-200">
-            <p className="text-teal-800 font-semibold">
-              ✓ No Long-Term Contracts &nbsp;•&nbsp; ✓ 100% Vendor Neutral &nbsp;•&nbsp; ✓ Enterprise Expertise &nbsp;•&nbsp; ✓ Flexible Engagements
-            </p>
-          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="space-y-8 max-w-5xl mx-auto">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
               <Card 
                 key={index} 
                 id={service.id}
-                className="feature-card group h-full"
+                className="feature-card group overflow-hidden"
               >
-                <CardHeader className="text-center pb-4">
-                  <div className={`${service.color} mb-4 flex justify-center`}>
-                    <IconComponent size={48} className="group-hover:scale-110 transition-transform duration-300" />
+                <div className="flex flex-col lg:flex-row">
+                  <div className={`${service.bgColor} p-8 lg:w-1/3 flex flex-col items-center justify-center`}>
+                    <div className={`${service.color} mb-4`}>
+                      <IconComponent size={64} className="group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                    <CardTitle className="text-xl text-slate-900 text-center font-semibold group-hover:text-teal-600 transition-colors duration-300">
+                      {service.title}
+                    </CardTitle>
                   </div>
-                  <CardTitle className="text-xl text-slate-900 mb-3 font-semibold group-hover:text-teal-600 transition-colors duration-300">
-                    {service.title}
-                  </CardTitle>
-                  <CardDescription className="text-gray-600 font-medium leading-relaxed">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex-1">
-                  <ul className="space-y-3">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start group/feature">
-                        <span className="text-teal-500 mr-3 mt-1 font-bold group-hover/feature:scale-110 transition-transform inline-block">✓</span>
-                        <span className="text-sm font-medium text-gray-700 leading-relaxed">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
+                  <div className="p-8 lg:w-2/3">
+                    <CardDescription className="text-gray-700 font-medium leading-relaxed text-lg mb-6">
+                      {service.description}
+                    </CardDescription>
+                    <div>
+                      <h4 className="font-semibold text-slate-900 mb-4">Deliverables:</h4>
+                      <ul className="space-y-2">
+                        {service.deliverables.map((deliverable, idx) => (
+                          <li key={idx} className="flex items-start">
+                            <span className="text-teal-500 mr-3 mt-1 font-bold">✓</span>
+                            <span className="text-gray-600 font-medium">{deliverable}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </Card>
             );
           })}
@@ -176,16 +131,17 @@ const Services = () => {
 
         <div className="text-center mt-16">
           <div className="bg-slate-900 rounded-xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">Ready to Transform Your Technology Strategy?</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">Ready to Bring Clarity to Your Organization?</h3>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Get a complimentary technology assessment and strategic consultation to identify opportunities for growth and optimization.
+              Request a governance and compliance assessment to identify opportunities for improvement 
+              and create a roadmap for operational confidence.
             </p>
             <a 
-              href="mailto:momentumedgeconsulting@gmail.com?subject=Free Technology Assessment Request&body=Hello, I would like to schedule a complimentary technology assessment and strategic consultation to discuss my business needs."
+              href="mailto:momentumedgeconsulting@gmail.com?subject=Governance %26 Compliance Assessment Request&body=Hello, I would like to request a governance and compliance assessment."
               className="bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold text-lg px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg inline-flex items-center justify-center"
               style={{ boxShadow: '0 8px 24px rgba(20, 184, 166, 0.4)' }}
             >
-              Schedule Your Free Assessment
+              Request an Assessment
             </a>
           </div>
         </div>

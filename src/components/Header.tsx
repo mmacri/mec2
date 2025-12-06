@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Menu, X } from "lucide-react";
@@ -11,26 +10,18 @@ const Header = () => {
 
   const serviceCategories = [
     {
-      title: "Strategic Services",
+      title: "Core Services",
       items: [
-        { name: "Virtual CIO & IT Strategy", path: "/services#vcio" },
-        { name: "Virtual CISO & GRC", path: "/services#vciso" },
-        { name: "Partner & Channel Strategy", path: "/services#partner" }
+        { name: "Policy & Control Development", path: "/services#policy" },
+        { name: "Governance & Process Design", path: "/services#governance" },
+        { name: "Staffing & Responsibility Modeling", path: "/services#staffing" }
       ]
     },
     {
-      title: "Specialized Solutions",
+      title: "Compliance & IT",
       items: [
-        { name: "Healthcare IT & Compliance", path: "/services#healthcare" },
-        { name: "AI Solutions & Governance", path: "/services#ai" },
-        { name: "Cloud & Infrastructure", path: "/services#cloud" }
-      ]
-    },
-    {
-      title: "Implementation",
-      items: [
-        { name: "Small Office & Remote IT", path: "/services#small-office" },
-        { name: "IT Projects & Assessments", path: "/services#projects" }
+        { name: "Compliance & Audit Readiness", path: "/services#compliance" },
+        { name: "IT Governance & Advisory", path: "/services#it-governance" }
       ]
     }
   ];
@@ -68,10 +59,9 @@ const Header = () => {
                 className="h-16 w-auto md:h-20 lg:h-24 object-contain"
                 onError={(e) => {
                   console.error("Logo failed to load:", logoPath);
-                  // Fallback to text if image fails
                   e.currentTarget.style.display = 'none';
                   const fallback = document.createElement('div');
-                  fallback.innerHTML = '<h1 class="text-2xl font-bold text-green-600">Momentum Edge Consulting</h1>';
+                  fallback.innerHTML = '<h1 class="text-2xl font-bold text-teal-600">Momentum Edge Consulting</h1>';
                   e.currentTarget.parentNode?.appendChild(fallback);
                 }}
               />
@@ -95,9 +85,9 @@ const Header = () => {
               </button>
               
               {isServicesOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[640px] bg-white shadow-2xl rounded-lg z-50 border border-teal-100 animate-fade-in">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[500px] bg-white shadow-2xl rounded-lg z-50 border border-teal-100 animate-fade-in">
                   <div className="p-6">
-                    <div className="grid grid-cols-3 gap-6">
+                    <div className="grid grid-cols-2 gap-6">
                       {serviceCategories.map((category, idx) => (
                         <div key={idx}>
                           <h3 className="text-xs font-semibold text-teal-600 uppercase tracking-wide mb-3">
@@ -135,7 +125,7 @@ const Header = () => {
             </div>
 
             <Link to="/industries" className="nav-link">
-              Industries
+              Who We Serve
             </Link>
             <Link to="/about" className="nav-link">
               About
@@ -145,11 +135,11 @@ const Header = () => {
             </Link>
             
             <a 
-              href="mailto:momentumedgeconsulting@gmail.com?subject=Free Strategy Session Request&body=Hello, I would like to schedule a free strategy session to discuss my business technology needs."
+              href="mailto:momentumedgeconsulting@gmail.com?subject=Assessment Request&body=Hello, I would like to request a governance and compliance assessment."
               className="bg-teal-500 hover:bg-teal-600 text-white font-semibold px-6 py-2 rounded-lg transition-all duration-300 hover-scale shadow-lg inline-flex items-center justify-center"
               style={{ boxShadow: '0 4px 14px rgba(20, 184, 166, 0.4)' }}
             >
-              Free Strategy Session
+              Request Assessment
             </a>
           </nav>
 
@@ -212,7 +202,7 @@ const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className="text-gray-700 hover:text-teal-600 transition-colors duration-300 font-medium py-2"
               >
-                Industries
+                Who We Serve
               </Link>
               <Link 
                 to="/about" 
@@ -230,11 +220,11 @@ const Header = () => {
               </Link>
               
               <a 
-                href="mailto:momentumedgeconsulting@gmail.com?subject=Free Strategy Session Request&body=Hello, I would like to schedule a free strategy session to discuss my business technology needs."
+                href="mailto:momentumedgeconsulting@gmail.com?subject=Assessment Request&body=Hello, I would like to request a governance and compliance assessment."
                 onClick={() => setIsMenuOpen(false)}
                 className="bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold w-full py-3 rounded-lg transition-all duration-300 shadow-lg mt-4 text-center inline-block"
               >
-                Free Strategy Session
+                Request Assessment
               </a>
             </div>
           </div>
