@@ -1,5 +1,6 @@
 import { FileText, GitBranch, Users, ClipboardCheck, Monitor, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ScrollAnimation, StaggerContainer, StaggerItem } from "./ScrollAnimation";
 
 const Services = () => {
   const services = [
@@ -72,79 +73,91 @@ const Services = () => {
   return (
     <section className="section-padding bg-white">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-up">
+        <ScrollAnimation className="text-center mb-16">
           <h2 className="section-title">Our Services</h2>
           <p className="section-subtitle">
             We help regulated organizations build the policies, controls, governance structures, 
             and operational processes they need to operate with confidence.
           </p>
-        </div>
+        </ScrollAnimation>
 
-        <div className="space-y-8 max-w-5xl mx-auto">
+        <StaggerContainer className="space-y-8 max-w-5xl mx-auto" staggerDelay={0.1}>
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
-              <div 
-                key={index}
-                id={service.id}
-                className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-teal-200 transition-all duration-300 animate-fade-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-3">
-                  {/* Left column - Icon and title */}
-                  <div className="bg-slate-50 p-8 flex flex-col justify-center items-center text-center">
-                    <div className="w-16 h-16 rounded-2xl bg-teal-100 flex items-center justify-center mb-4">
-                      <IconComponent className="w-8 h-8 text-teal-600" />
-                    </div>
-                    <h3 className="text-xl font-bold text-slate-900">{service.title}</h3>
-                  </div>
-                  
-                  {/* Right column - Content */}
-                  <div className="lg:col-span-2 p-8">
-                    <div className="mb-6">
-                      <div className="text-sm font-semibold text-red-500 uppercase tracking-wide mb-2">The Problem</div>
-                      <p className="text-slate-600">{service.problem}</p>
-                    </div>
-                    <div className="mb-6">
-                      <div className="text-sm font-semibold text-teal-600 uppercase tracking-wide mb-2">Our Solution</div>
-                      <p className="text-slate-700 font-medium">{service.solution}</p>
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold text-slate-900 uppercase tracking-wide mb-3">Deliverables</div>
-                      <div className="flex flex-wrap gap-2">
-                        {service.deliverables.map((deliverable, idx) => (
-                          <span 
-                            key={idx}
-                            className="inline-flex items-center bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm"
-                          >
-                            {deliverable}
-                          </span>
-                        ))}
+              <StaggerItem key={index}>
+                <motion.div 
+                  id={service.id}
+                  className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-teal-200 transition-all duration-300"
+                  whileHover={{ y: -4, boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.1)" }}
+                >
+                  <div className="grid grid-cols-1 lg:grid-cols-3">
+                    <motion.div 
+                      className="bg-slate-50 p-8 flex flex-col justify-center items-center text-center"
+                      whileHover={{ backgroundColor: "#f0fdfa" }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <motion.div 
+                        className="w-16 h-16 rounded-2xl bg-teal-100 flex items-center justify-center mb-4"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                      >
+                        <IconComponent className="w-8 h-8 text-teal-600" />
+                      </motion.div>
+                      <h3 className="text-xl font-bold text-slate-900">{service.title}</h3>
+                    </motion.div>
+                    
+                    <div className="lg:col-span-2 p-8">
+                      <div className="mb-6">
+                        <div className="text-sm font-semibold text-red-500 uppercase tracking-wide mb-2">The Problem</div>
+                        <p className="text-slate-600">{service.problem}</p>
+                      </div>
+                      <div className="mb-6">
+                        <div className="text-sm font-semibold text-teal-600 uppercase tracking-wide mb-2">Our Solution</div>
+                        <p className="text-slate-700 font-medium">{service.solution}</p>
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-slate-900 uppercase tracking-wide mb-3">Deliverables</div>
+                        <div className="flex flex-wrap gap-2">
+                          {service.deliverables.map((deliverable, idx) => (
+                            <motion.span 
+                              key={idx}
+                              className="inline-flex items-center bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm"
+                              whileHover={{ scale: 1.05, backgroundColor: "#ccfbf1" }}
+                            >
+                              {deliverable}
+                            </motion.span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerContainer>
 
-        {/* CTA */}
-        <div className="text-center mt-16 animate-fade-up">
-          <div className="bg-slate-900 rounded-2xl p-10 max-w-3xl mx-auto">
+        <ScrollAnimation delay={0.3} className="text-center mt-16">
+          <motion.div 
+            className="bg-slate-900 rounded-2xl p-10 max-w-3xl mx-auto"
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.3 }}
+          >
             <h3 className="text-2xl font-bold text-white mb-4">Ready to Get Started?</h3>
             <p className="text-slate-300 mb-8">
               Request a governance and compliance assessment to identify opportunities and create a roadmap.
             </p>
-            <a 
+            <motion.a 
               href="mailto:momentumedgeconsulting@gmail.com?subject=Governance Assessment Request"
               className="cta-primary group"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
             >
               Request an Assessment
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-            </a>
-          </div>
-        </div>
+            </motion.a>
+          </motion.div>
+        </ScrollAnimation>
       </div>
     </section>
   );

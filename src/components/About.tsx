@@ -1,4 +1,6 @@
 import { CheckCircle, Target, Eye, Handshake, Shield } from "lucide-react";
+import { motion } from "framer-motion";
+import { ScrollAnimation, StaggerContainer, StaggerItem } from "./ScrollAnimation";
 
 const About = () => {
   const differentiators = [
@@ -28,7 +30,7 @@ const About = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-20 animate-fade-up">
+          <ScrollAnimation className="text-center mb-20">
             <h2 className="section-title mb-6">
               Bringing Structure, Clarity, and Governance to Organizations That Need It Most
             </h2>
@@ -36,12 +38,12 @@ const About = () => {
               Momentum Edge Consulting was founded to help organizations operate with clarity, structure, 
               and confidence in environments where ambiguity is costly — and regulators expect discipline.
             </p>
-          </div>
+          </ScrollAnimation>
 
           {/* Two column layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
             {/* About content */}
-            <div className="animate-fade-up">
+            <ScrollAnimation variant="slideLeft">
               <h3 className="text-2xl font-bold text-slate-900 mb-6">
                 About MEC
               </h3>
@@ -57,52 +59,71 @@ const About = () => {
               
               <div className="space-y-3">
                 {highlights.map((highlight, index) => (
-                  <div key={index} className="flex items-center">
+                  <motion.div 
+                    key={index} 
+                    className="flex items-center"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 * index }}
+                    viewport={{ once: true }}
+                  >
                     <CheckCircle className="w-5 h-5 text-teal-500 mr-3 flex-shrink-0" />
                     <span className="text-slate-700 font-medium">{highlight}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </ScrollAnimation>
 
             {/* What makes us different */}
-            <div className="animate-fade-up animate-fade-up-delay-2">
+            <ScrollAnimation variant="slideRight" delay={0.2}>
               <h3 className="text-2xl font-bold text-slate-900 mb-6">
                 What Makes Us Different
               </h3>
-              <div className="space-y-4">
+              <StaggerContainer className="space-y-4" staggerDelay={0.1}>
                 {differentiators.map((item, index) => (
-                  <div 
-                    key={index}
-                    className="bg-slate-50 border border-slate-100 rounded-xl p-5"
-                  >
-                    <p className="text-slate-700 leading-relaxed">{item}</p>
-                  </div>
+                  <StaggerItem key={index}>
+                    <motion.div 
+                      className="bg-slate-50 border border-slate-100 rounded-xl p-5"
+                      whileHover={{ x: 5, backgroundColor: "#f0fdfa", borderColor: "#99f6e4" }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <p className="text-slate-700 leading-relaxed">{item}</p>
+                    </motion.div>
+                  </StaggerItem>
                 ))}
-              </div>
-            </div>
+              </StaggerContainer>
+            </ScrollAnimation>
           </div>
 
           {/* Values */}
-          <div className="animate-fade-up animate-fade-up-delay-3">
+          <ScrollAnimation delay={0.2}>
             <h3 className="text-2xl font-bold text-slate-900 text-center mb-10">
               Our Values
             </h3>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.1}>
               {values.map((value, index) => {
                 const IconComponent = value.icon;
                 return (
-                  <div key={index} className="text-center">
-                    <div className="w-14 h-14 rounded-2xl bg-teal-50 flex items-center justify-center mx-auto mb-4">
-                      <IconComponent className="w-7 h-7 text-teal-600" />
-                    </div>
-                    <h4 className="font-semibold text-slate-900 mb-1">{value.title}</h4>
-                    <p className="text-sm text-slate-500">{value.description}</p>
-                  </div>
+                  <StaggerItem key={index}>
+                    <motion.div 
+                      className="text-center"
+                      whileHover={{ y: -5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <motion.div 
+                        className="w-14 h-14 rounded-2xl bg-teal-50 flex items-center justify-center mx-auto mb-4"
+                        whileHover={{ scale: 1.1, rotate: 5, backgroundColor: "#ccfbf1" }}
+                      >
+                        <IconComponent className="w-7 h-7 text-teal-600" />
+                      </motion.div>
+                      <h4 className="font-semibold text-slate-900 mb-1">{value.title}</h4>
+                      <p className="text-sm text-slate-500">{value.description}</p>
+                    </motion.div>
+                  </StaggerItem>
                 );
               })}
-            </div>
-          </div>
+            </StaggerContainer>
+          </ScrollAnimation>
         </div>
       </div>
     </section>
