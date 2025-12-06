@@ -25,9 +25,10 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				
 				primary: {
-					DEFAULT: '#102a43',
-					foreground: '#ffffff'
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -42,18 +43,8 @@ export default {
 					foreground: 'hsl(var(--muted-foreground))'
 				},
 				accent: {
-					DEFAULT: '#14b8a6',
-					foreground: '#ffffff'
-				},
-				teal: {
-					400: '#2dd4bf',
-					500: '#14b8a6',
-					600: '#0d9488',
-					700: '#0f766e'
-				},
-				cyan: {
-					400: '#22d3ee',
-					500: '#06b6d4'
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -63,6 +54,35 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				
+				/* Brand Colors */
+				navy: {
+					DEFAULT: 'hsl(var(--navy))',
+					dark: 'hsl(var(--navy-dark))',
+					light: 'hsl(var(--navy-light))'
+				},
+				slate: {
+					DEFAULT: 'hsl(var(--slate))',
+					light: 'hsl(var(--slate-light))',
+					muted: 'hsl(var(--slate-muted))'
+				},
+				teal: {
+					DEFAULT: 'hsl(var(--teal))',
+					light: 'hsl(var(--teal-light))',
+					dark: 'hsl(var(--teal-dark))'
+				},
+				sand: {
+					DEFAULT: 'hsl(var(--sand))'
+				},
+				
+				/* Utility Colors */
+				success: {
+					DEFAULT: 'hsl(var(--success))'
+				},
+				warning: {
+					DEFAULT: 'hsl(var(--warning))'
+				},
+				
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -75,13 +95,18 @@ export default {
 				}
 			},
 			fontFamily: {
-				'heading': ['Roboto Slab', 'serif'],
-				'body': ['Open Sans', 'sans-serif'],
+				'heading': ['Playfair Display', 'Georgia', 'serif'],
+				'body': ['Inter', 'system-ui', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			boxShadow: {
+				'brand': '0 4px 14px hsla(178, 50%, 46%, 0.35)',
+				'brand-hover': '0 8px 24px hsla(178, 50%, 46%, 0.45)',
+				'card': '0 20px 40px -12px hsla(178, 50%, 46%, 0.15)',
 			},
 			keyframes: {
 				'accordion-down': {
