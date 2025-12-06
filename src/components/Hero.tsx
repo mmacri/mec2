@@ -6,27 +6,33 @@ import { ScrollAnimation, StaggerContainer, StaggerItem } from "./ScrollAnimatio
 
 const Hero = () => {
   return (
-    <section className="relative bg-gradient-to-br from-slate-50 via-white to-teal-50/30 overflow-hidden">
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 pattern-grid"></div>
+    <section className="relative hero-home overflow-hidden">
+      {/* Subtle grid pattern - adjusted for dark background */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(hsla(178, 50%, 46%, 0.1) 1px, transparent 1px),
+                           linear-gradient(90deg, hsla(178, 50%, 46%, 0.1) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
+        }}></div>
+      </div>
       
-      {/* Abstract governance shapes */}
+      {/* Abstract governance shapes - teal on dark */}
       <motion.div 
-        className="absolute top-20 right-0 w-96 h-96 opacity-10"
+        className="absolute top-20 right-0 w-96 h-96 opacity-20"
         animate={{ rotate: 360 }}
         transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
       >
         <svg viewBox="0 0 200 200" className="w-full h-full">
-          <rect x="20" y="20" width="60" height="40" rx="4" fill="none" stroke="#14b8a6" strokeWidth="1.5"/>
-          <rect x="120" y="20" width="60" height="40" rx="4" fill="none" stroke="#14b8a6" strokeWidth="1.5"/>
-          <rect x="70" y="100" width="60" height="40" rx="4" fill="none" stroke="#14b8a6" strokeWidth="1.5"/>
-          <line x1="50" y1="60" x2="50" y2="80" stroke="#14b8a6" strokeWidth="1.5"/>
-          <line x1="50" y1="80" x2="100" y2="80" stroke="#14b8a6" strokeWidth="1.5"/>
-          <line x1="100" y1="80" x2="100" y2="100" stroke="#14b8a6" strokeWidth="1.5"/>
-          <line x1="150" y1="60" x2="150" y2="80" stroke="#14b8a6" strokeWidth="1.5"/>
-          <line x1="150" y1="80" x2="100" y2="80" stroke="#14b8a6" strokeWidth="1.5"/>
-          <rect x="20" y="160" width="160" height="30" rx="4" fill="none" stroke="#14b8a6" strokeWidth="1.5"/>
-          <line x1="100" y1="140" x2="100" y2="160" stroke="#14b8a6" strokeWidth="1.5"/>
+          <rect x="20" y="20" width="60" height="40" rx="4" fill="none" stroke="#3AAFA9" strokeWidth="1.5"/>
+          <rect x="120" y="20" width="60" height="40" rx="4" fill="none" stroke="#3AAFA9" strokeWidth="1.5"/>
+          <rect x="70" y="100" width="60" height="40" rx="4" fill="none" stroke="#3AAFA9" strokeWidth="1.5"/>
+          <line x1="50" y1="60" x2="50" y2="80" stroke="#3AAFA9" strokeWidth="1.5"/>
+          <line x1="50" y1="80" x2="100" y2="80" stroke="#3AAFA9" strokeWidth="1.5"/>
+          <line x1="100" y1="80" x2="100" y2="100" stroke="#3AAFA9" strokeWidth="1.5"/>
+          <line x1="150" y1="60" x2="150" y2="80" stroke="#3AAFA9" strokeWidth="1.5"/>
+          <line x1="150" y1="80" x2="100" y2="80" stroke="#3AAFA9" strokeWidth="1.5"/>
+          <rect x="20" y="160" width="160" height="30" rx="4" fill="none" stroke="#3AAFA9" strokeWidth="1.5"/>
+          <line x1="100" y1="140" x2="100" y2="160" stroke="#3AAFA9" strokeWidth="1.5"/>
         </svg>
       </motion.div>
       
@@ -37,11 +43,11 @@ const Hero = () => {
             <div>
               <ScrollAnimation delay={0}>
                 <motion.div 
-                  className="inline-flex items-center bg-teal-50 text-teal-700 px-4 py-2 rounded-full text-sm font-medium mb-8"
+                  className="inline-flex items-center bg-teal/20 text-teal-light px-4 py-2 rounded-full text-sm font-medium mb-8 border border-teal/30"
                   whileHover={{ scale: 1.05 }}
                 >
                   <motion.span 
-                    className="w-2 h-2 bg-teal-500 rounded-full mr-2"
+                    className="w-2 h-2 bg-teal rounded-full mr-2"
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
@@ -50,14 +56,14 @@ const Hero = () => {
               </ScrollAnimation>
               
               <ScrollAnimation delay={0.1}>
-                <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 mb-8 leading-tight">
+                <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-8 leading-tight">
                   Clarity, Structure, and Compliance for{" "}
-                  <span className="text-teal-600">Regulated Organizations</span>
+                  <span className="text-teal">Regulated Organizations</span>
                 </h1>
               </ScrollAnimation>
               
               <ScrollAnimation delay={0.2}>
-                <p className="text-xl text-slate-600 mb-10 leading-relaxed">
+                <p className="text-xl text-slate-300 mb-10 leading-relaxed">
                   Momentum Edge Consulting helps medical practices, utilities, and compliance-driven organizations 
                   design the policies, controls, governance models, and operational processes needed to operate 
                   with confidence and withstand regulatory scrutiny.
@@ -89,7 +95,7 @@ const Hero = () => {
               <div className="relative">
                 {/* Main card */}
                 <motion.div 
-                  className="bg-white rounded-3xl p-8 shadow-2xl border border-slate-100"
+                  className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/20"
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -101,11 +107,11 @@ const Hero = () => {
                     ].map((item, i) => (
                       <StaggerItem key={i}>
                         <motion.div 
-                          className="text-center p-4 bg-slate-50 rounded-xl"
-                          whileHover={{ scale: 1.05, backgroundColor: "#f0fdfa" }}
+                          className="text-center p-4 bg-white/10 rounded-xl border border-white/10"
+                          whileHover={{ scale: 1.05, backgroundColor: "rgba(58, 175, 169, 0.2)" }}
                         >
-                          <item.icon className="w-8 h-8 text-teal-500 mx-auto mb-2" />
-                          <span className="text-xs font-medium text-slate-600">{item.label}</span>
+                          <item.icon className="w-8 h-8 text-teal mx-auto mb-2" />
+                          <span className="text-xs font-medium text-white/80">{item.label}</span>
                         </motion.div>
                       </StaggerItem>
                     ))}
@@ -116,20 +122,20 @@ const Hero = () => {
                     <svg viewBox="0 0 300 150" className="w-full h-full">
                       <motion.rect 
                         x="10" y="55" width="80" height="40" rx="6" 
-                        fill="#fef2f2" stroke="#fca5a5" strokeWidth="1.5"
+                        fill="rgba(217, 83, 79, 0.2)" stroke="#D9534F" strokeWidth="1.5"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.5 }}
                       />
                       <motion.text 
-                        x="50" y="80" textAnchor="middle" className="text-xs" fill="#dc2626" fontWeight="500"
+                        x="50" y="80" textAnchor="middle" className="text-xs" fill="#D9534F" fontWeight="500"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.6 }}
                       >Chaos</motion.text>
                       
                       <motion.line 
-                        x1="95" y1="75" x2="125" y2="75" stroke="#14b8a6" strokeWidth="2"
+                        x1="95" y1="75" x2="125" y2="75" stroke="#3AAFA9" strokeWidth="2"
                         initial={{ pathLength: 0 }}
                         animate={{ pathLength: 1 }}
                         transition={{ delay: 0.7, duration: 0.4 }}
@@ -137,26 +143,26 @@ const Hero = () => {
                       
                       <motion.rect 
                         x="130" y="45" width="80" height="60" rx="6" 
-                        fill="#f0fdfa" stroke="#14b8a6" strokeWidth="2"
+                        fill="rgba(58, 175, 169, 0.2)" stroke="#3AAFA9" strokeWidth="2"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.8 }}
                       />
                       <motion.text 
-                        x="170" y="70" textAnchor="middle" className="text-xs" fill="#0f766e" fontWeight="600"
+                        x="170" y="70" textAnchor="middle" className="text-xs" fill="#3AAFA9" fontWeight="600"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.9 }}
                       >MEC</motion.text>
                       <motion.text 
-                        x="170" y="90" textAnchor="middle" className="text-[10px]" fill="#0f766e"
+                        x="170" y="90" textAnchor="middle" className="text-[10px]" fill="#3AAFA9"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1 }}
                       >Advisory</motion.text>
                       
                       <motion.line 
-                        x1="215" y1="75" x2="245" y2="75" stroke="#14b8a6" strokeWidth="2"
+                        x1="215" y1="75" x2="245" y2="75" stroke="#3AAFA9" strokeWidth="2"
                         initial={{ pathLength: 0 }}
                         animate={{ pathLength: 1 }}
                         transition={{ delay: 1.1, duration: 0.4 }}
@@ -164,13 +170,13 @@ const Hero = () => {
                       
                       <motion.rect 
                         x="250" y="55" width="80" height="40" rx="6" 
-                        fill="#f0fdfa" stroke="#0d9488" strokeWidth="1.5"
+                        fill="rgba(58, 175, 169, 0.3)" stroke="#2F918E" strokeWidth="1.5"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 1.2 }}
                       />
                       <motion.text 
-                        x="290" y="80" textAnchor="middle" className="text-xs" fill="#0d9488" fontWeight="500"
+                        x="290" y="80" textAnchor="middle" className="text-xs" fill="#DEF2F1" fontWeight="500"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.3 }}
@@ -181,12 +187,12 @@ const Hero = () => {
                 
                 {/* Floating accent elements */}
                 <motion.div 
-                  className="absolute -top-4 -right-4 w-24 h-24 bg-teal-100 rounded-full opacity-50"
+                  className="absolute -top-4 -right-4 w-24 h-24 bg-teal/30 rounded-full"
                   animate={{ y: [-10, 10, -10] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 />
                 <motion.div 
-                  className="absolute -bottom-6 -left-6 w-32 h-32 bg-slate-100 rounded-full opacity-50"
+                  className="absolute -bottom-6 -left-6 w-32 h-32 bg-white/10 rounded-full"
                   animate={{ y: [10, -10, 10] }}
                   transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                 />
