@@ -14,7 +14,7 @@ const Expertise = () => {
         "Executive reporting and board-level presentations",
         "Vendor evaluation and procurement advisory"
       ],
-      color: "text-blue-500"
+      color: "text-teal"
     },
     {
       icon: Shield,
@@ -27,7 +27,7 @@ const Expertise = () => {
         "Security awareness training and governance",
         "Vulnerability assessment and penetration testing coordination"
       ],
-      color: "text-red-500"
+      color: "text-destructive"
     },
     {
       icon: Cloud,
@@ -40,7 +40,7 @@ const Expertise = () => {
         "Hybrid cloud and on-premises integration",
         "Backup, disaster recovery, and business continuity"
       ],
-      color: "text-cyan-500"
+      color: "text-teal-dark"
     },
     {
       icon: Brain,
@@ -53,7 +53,7 @@ const Expertise = () => {
         "Compliance with emerging AI regulations (EU AI Act)",
         "Automation and workflow optimization strategies"
       ],
-      color: "text-purple-500"
+      color: "text-navy"
     },
     {
       icon: Cog,
@@ -66,7 +66,7 @@ const Expertise = () => {
         "Patient data security and privacy protection",
         "Telehealth infrastructure and secure communications"
       ],
-      color: "text-green-500"
+      color: "text-success"
     },
     {
       icon: Users,
@@ -79,7 +79,7 @@ const Expertise = () => {
         "Partner portal development and digital enablement",
         "Joint business planning and revenue acceleration"
       ],
-      color: "text-orange-500"
+      color: "text-warning"
     },
     {
       icon: BarChart3,
@@ -92,7 +92,7 @@ const Expertise = () => {
         "Performance monitoring and optimization",
         "Change management and process improvement"
       ],
-      color: "text-indigo-500"
+      color: "text-slate"
     },
     {
       icon: HeartHandshake,
@@ -105,20 +105,20 @@ const Expertise = () => {
         "Vendor coordination and relationship management",
         "Growth-oriented IT planning and scalability"
       ],
-      color: "text-pink-500"
+      color: "text-teal"
     }
   ];
 
   return (
-    <section id="expertise" className="py-20 bg-white">
+    <section id="expertise" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-8 heading-enhanced">
+            <h2 className="text-3xl lg:text-5xl font-bold text-navy mb-8 heading-enhanced">
               Deep Technical Expertise Across Technology Domains
             </h2>
-            <p className="text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
+            <p className="text-lg lg:text-xl text-slate max-w-4xl mx-auto leading-relaxed font-medium">
               25+ years of hands-on experience delivering strategic technology solutions across healthcare, 
               small business, and enterprise environments with proven results and measurable outcomes.
             </p>
@@ -129,15 +129,15 @@ const Expertise = () => {
             {expertiseAreas.map((area, index) => {
               const IconComponent = area.icon;
               return (
-                <Card key={index} className="feature-card group h-full">
+                <Card key={index} className="card-professional group h-full border-border hover:border-teal/50">
                   <CardHeader className="text-center pb-4">
                     <div className={`${area.color} mb-4 flex justify-center`}>
                       <IconComponent size={48} className="group-hover:scale-110 transition-transform duration-300" />
                     </div>
-                    <CardTitle className="text-xl text-slate-900 mb-3 font-semibold group-hover:text-green-500 transition-colors duration-300">
+                    <CardTitle className="text-xl text-navy mb-3 font-semibold group-hover:text-teal transition-colors duration-300">
                       {area.title}
                     </CardTitle>
-                    <CardDescription className="text-gray-600 font-medium leading-relaxed">
+                    <CardDescription className="text-slate font-medium leading-relaxed">
                       {area.description}
                     </CardDescription>
                   </CardHeader>
@@ -145,8 +145,8 @@ const Expertise = () => {
                     <ul className="space-y-2">
                       {area.skills.map((skill, skillIndex) => (
                         <li key={skillIndex} className="flex items-start">
-                          <span className="text-green-500 mr-2 mt-1 font-bold text-xs">✓</span>
-                          <span className="text-sm font-medium text-gray-700 leading-relaxed">{skill}</span>
+                          <span className="text-teal mr-2 mt-1 font-bold text-xs">✓</span>
+                          <span className="text-sm font-medium text-slate leading-relaxed">{skill}</span>
                         </li>
                       ))}
                     </ul>
@@ -158,15 +158,15 @@ const Expertise = () => {
 
           {/* Call to Action */}
           <div className="text-center">
-            <div className="bg-gray-50 rounded-xl p-8 max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Ready to Leverage This Expertise?</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+            <div className="bg-sand rounded-xl p-8 max-w-4xl mx-auto border border-border">
+              <h3 className="text-2xl font-bold text-navy mb-4">Ready to Leverage This Expertise?</h3>
+              <p className="text-slate mb-6 leading-relaxed">
                 Get a complimentary technology assessment and discover how our deep expertise 
                 can accelerate your business growth and optimize your technology investments.
               </p>
               <a 
                 href="mailto:momentumedgeconsulting@gmail.com?subject=Expertise Consultation Request&body=Hello, I would like to schedule a consultation to discuss how your expertise can help with my specific technology challenges."
-                className="bg-green-500 hover:bg-green-600 text-white font-semibold text-lg px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg inline-flex items-center justify-center"
+                className="cta-primary inline-flex items-center justify-center"
               >
                 Schedule Expert Consultation
               </a>
