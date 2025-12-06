@@ -26,19 +26,32 @@ const About = () => {
   ];
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding">
+      {/* Hero Section */}
+      <div className="hero-about py-16 mb-16 relative">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `repeating-linear-gradient(45deg, hsl(var(--slate)) 0, hsl(var(--slate)) 1px, transparent 0, transparent 50%)`,
+            backgroundSize: '20px 20px'
+          }}></div>
+        </div>
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <ScrollAnimation className="text-center">
+              <h2 className="section-title mb-6">
+                Bringing Structure, Clarity, and Governance to Organizations That Need It Most
+              </h2>
+              <p className="section-subtitle">
+                Momentum Edge Consulting was founded to help organizations operate with clarity, structure, 
+                and confidence in environments where ambiguity is costly — and regulators expect discipline.
+              </p>
+            </ScrollAnimation>
+          </div>
+        </div>
+      </div>
+
       <div className="container mx-auto px-6">
         <div className="max-w-5xl mx-auto">
-          {/* Header */}
-          <ScrollAnimation className="text-center mb-20">
-            <h2 className="section-title mb-6">
-              Bringing Structure, Clarity, and Governance to Organizations That Need It Most
-            </h2>
-            <p className="section-subtitle">
-              Momentum Edge Consulting was founded to help organizations operate with clarity, structure, 
-              and confidence in environments where ambiguity is costly — and regulators expect discipline.
-            </p>
-          </ScrollAnimation>
 
           {/* Two column layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
@@ -67,7 +80,7 @@ const About = () => {
                     transition={{ delay: 0.1 * index }}
                     viewport={{ once: true }}
                   >
-                    <CheckCircle className="w-5 h-5 text-teal-500 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-teal mr-3 flex-shrink-0" />
                     <span className="text-slate-700 font-medium">{highlight}</span>
                   </motion.div>
                 ))}
@@ -83,11 +96,11 @@ const About = () => {
                 {differentiators.map((item, index) => (
                   <StaggerItem key={index}>
                     <motion.div 
-                      className="bg-slate-50 border border-slate-100 rounded-xl p-5"
-                      whileHover={{ x: 5, backgroundColor: "#f0fdfa", borderColor: "#99f6e4" }}
+                      className="bg-sand border border-border rounded-xl p-5"
+                      whileHover={{ x: 5, backgroundColor: "hsl(var(--teal-light))", borderColor: "hsl(var(--teal))" }}
                       transition={{ duration: 0.2 }}
                     >
-                      <p className="text-slate-700 leading-relaxed">{item}</p>
+                      <p className="text-slate leading-relaxed">{item}</p>
                     </motion.div>
                   </StaggerItem>
                 ))}
@@ -111,13 +124,13 @@ const About = () => {
                       transition={{ duration: 0.2 }}
                     >
                       <motion.div 
-                        className="w-14 h-14 rounded-2xl bg-teal-50 flex items-center justify-center mx-auto mb-4"
-                        whileHover={{ scale: 1.1, rotate: 5, backgroundColor: "#ccfbf1" }}
+                        className="w-14 h-14 rounded-2xl bg-teal-light flex items-center justify-center mx-auto mb-4"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
                       >
-                        <IconComponent className="w-7 h-7 text-teal-600" />
+                        <IconComponent className="w-7 h-7 text-teal-dark" />
                       </motion.div>
-                      <h4 className="font-semibold text-slate-900 mb-1">{value.title}</h4>
-                      <p className="text-sm text-slate-500">{value.description}</p>
+                      <h4 className="font-semibold text-navy mb-1">{value.title}</h4>
+                      <p className="text-sm text-slate">{value.description}</p>
                     </motion.div>
                   </StaggerItem>
                 );

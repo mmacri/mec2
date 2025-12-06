@@ -64,7 +64,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="section-padding bg-slate-50">
+    <section className="section-padding hero-contact">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
@@ -72,7 +72,7 @@ const Contact = () => {
             <h2 className="section-title mb-4">
               Let's Bring Clarity and Confidence to Your Organization
             </h2>
-            <p className="text-lg text-slate-600">
+            <p className="text-lg text-slate">
               Tell us about your current challenges and what you'd like to achieve.
             </p>
           </ScrollAnimation>
@@ -150,8 +150,8 @@ const Contact = () => {
                               <motion.div 
                                 className={`flex items-center space-x-3 p-4 rounded-xl border transition-all duration-200 cursor-pointer ${
                                   selectedChallenges.includes(challenge) 
-                                    ? 'border-teal-500 bg-teal-50' 
-                                    : 'border-slate-200 hover:border-slate-300'
+                                    ? 'border-teal bg-teal-light' 
+                                    : 'border-border hover:border-teal/50'
                                 }`}
                                 onClick={() => {
                                   const newChecked = !selectedChallenges.includes(challenge);
@@ -167,9 +167,9 @@ const Contact = () => {
                               >
                                 <Checkbox
                                   checked={selectedChallenges.includes(challenge)}
-                                  className="border-slate-300 data-[state=checked]:bg-teal-500 data-[state=checked]:border-teal-500"
+                                  className="border-border data-[state=checked]:bg-teal data-[state=checked]:border-teal"
                                 />
-                                <span className="text-sm text-slate-700">{challenge}</span>
+                                <span className="text-sm text-slate">{challenge}</span>
                               </motion.div>
                             </StaggerItem>
                           ))}

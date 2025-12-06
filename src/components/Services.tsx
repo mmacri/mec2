@@ -71,15 +71,28 @@ const Services = () => {
   ];
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding">
+      {/* Hero Section */}
+      <div className="hero-services py-16 mb-16 relative">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(hsl(var(--slate)) 1px, transparent 1px),
+                             linear-gradient(90deg, hsl(var(--slate)) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
+        <div className="container mx-auto px-6 relative z-10">
+          <ScrollAnimation className="text-center">
+            <h2 className="section-title text-navy">Our Services</h2>
+            <p className="section-subtitle">
+              We help regulated organizations build the policies, controls, governance structures, 
+              and operational processes they need to operate with confidence.
+            </p>
+          </ScrollAnimation>
+        </div>
+      </div>
+
       <div className="container mx-auto px-6">
-        <ScrollAnimation className="text-center mb-16">
-          <h2 className="section-title">Our Services</h2>
-          <p className="section-subtitle">
-            We help regulated organizations build the policies, controls, governance structures, 
-            and operational processes they need to operate with confidence.
-          </p>
-        </ScrollAnimation>
 
         <StaggerContainer className="space-y-8 max-w-5xl mx-auto" staggerDelay={0.1}>
           {services.map((service, index) => {
@@ -88,41 +101,41 @@ const Services = () => {
               <StaggerItem key={index}>
                 <motion.div 
                   id={service.id}
-                  className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-teal-200 transition-all duration-300"
-                  whileHover={{ y: -4, boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.1)" }}
+                  className="bg-white border border-border rounded-2xl overflow-hidden hover:border-teal/50 transition-all duration-300"
+                  whileHover={{ y: -4, boxShadow: "0 20px 40px -12px hsla(var(--teal), 0.15)" }}
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-3">
                     <motion.div 
-                      className="bg-slate-50 p-8 flex flex-col justify-center items-center text-center"
-                      whileHover={{ backgroundColor: "#f0fdfa" }}
+                      className="bg-sand p-8 flex flex-col justify-center items-center text-center"
+                      whileHover={{ backgroundColor: "hsl(var(--teal-light))" }}
                       transition={{ duration: 0.3 }}
                     >
                       <motion.div 
-                        className="w-16 h-16 rounded-2xl bg-teal-100 flex items-center justify-center mb-4"
+                        className="w-16 h-16 rounded-2xl bg-teal-light flex items-center justify-center mb-4"
                         whileHover={{ scale: 1.1, rotate: 5 }}
                       >
-                        <IconComponent className="w-8 h-8 text-teal-600" />
+                        <IconComponent className="w-8 h-8 text-teal-dark" />
                       </motion.div>
-                      <h3 className="text-xl font-bold text-slate-900">{service.title}</h3>
+                      <h3 className="text-xl font-bold text-navy">{service.title}</h3>
                     </motion.div>
                     
                     <div className="lg:col-span-2 p-8">
                       <div className="mb-6">
-                        <div className="text-sm font-semibold text-red-500 uppercase tracking-wide mb-2">The Problem</div>
-                        <p className="text-slate-600">{service.problem}</p>
+                        <div className="text-sm font-semibold text-destructive uppercase tracking-wide mb-2">The Problem</div>
+                        <p className="text-slate">{service.problem}</p>
                       </div>
                       <div className="mb-6">
-                        <div className="text-sm font-semibold text-teal-600 uppercase tracking-wide mb-2">Our Solution</div>
-                        <p className="text-slate-700 font-medium">{service.solution}</p>
+                        <div className="text-sm font-semibold text-teal uppercase tracking-wide mb-2">Our Solution</div>
+                        <p className="text-navy font-medium">{service.solution}</p>
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-slate-900 uppercase tracking-wide mb-3">Deliverables</div>
+                        <div className="text-sm font-semibold text-navy uppercase tracking-wide mb-3">Deliverables</div>
                         <div className="flex flex-wrap gap-2">
                           {service.deliverables.map((deliverable, idx) => (
                             <motion.span 
                               key={idx}
-                              className="inline-flex items-center bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm"
-                              whileHover={{ scale: 1.05, backgroundColor: "#ccfbf1" }}
+                              className="inline-flex items-center bg-sand text-slate px-3 py-1 rounded-full text-sm border border-border"
+                              whileHover={{ scale: 1.05, backgroundColor: "hsl(var(--teal-light))" }}
                             >
                               {deliverable}
                             </motion.span>
