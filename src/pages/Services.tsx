@@ -58,7 +58,7 @@ const ServicesPage = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-background">
         <Header />
         <div className="pt-8">
           <Services />
