@@ -8,8 +8,6 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
-  
-  const isHomePage = location.pathname === "/";
 
   const services = [
     { name: "Policy & Control Development", path: "/services#policy" },
@@ -19,9 +17,18 @@ const Header = () => {
     { name: "IT Governance & Advisory", path: "/services#it-governance" }
   ];
 
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "Industries", path: "/industries" },
+    { name: "Approach", path: "/approach" },
+    { name: "About", path: "/about" },
+    { name: "Resources", path: "/resources" },
+    { name: "Contact", path: "/contact" }
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     
     window.addEventListener("scroll", handleScroll);
@@ -40,54 +47,51 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    setIsMenuOpen(false);
+    setIsServicesOpen(false);
+  }, [location]);
+
   const handleServiceClick = () => {
     setIsServicesOpen(false);
     setIsMenuOpen(false);
   };
 
-  const logoPath = "/mec-logo.png";
-  
-  // Always show solid header for professional appearance
-  // Only use transparent on homepage hero before scroll
-  const showTransparent = isHomePage && !isScrolled && !isMenuOpen;
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <header 
-      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
-        showTransparent 
-          ? "bg-navy/90 backdrop-blur-md border-white/10" 
-          : "bg-white shadow-md border-slate-200"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? "bg-white shadow-md py-2" 
+          : "bg-white/95 backdrop-blur-sm py-3"
       }`}
     >
       <div className="container mx-auto px-6">
-        <div className="flex justify-between items-center py-3">
+        <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
-            <div className={`rounded-lg transition-all duration-300 ${
-              showTransparent ? "bg-white/95 px-3 py-1 shadow-sm" : ""
-            }`}>
-              <img 
-                src={logoPath}
-                alt="Momentum Edge Consulting" 
-                className="h-14 w-auto md:h-16 lg:h-20 object-contain"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  const fallback = document.createElement('div');
-                  fallback.innerHTML = `<span class="text-xl font-bold text-navy">Momentum Edge</span>`;
-                  e.currentTarget.parentNode?.appendChild(fallback);
-                }}
-              />
+          <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+            <img 
+              src="/mec-logo.png"
+              alt="Momentum Edge Consulting" 
+              className="h-12 w-auto"
+            />
+            <div className="hidden sm:block">
+              <span className="text-lg font-bold text-brand-navy font-heading">
+                Momentum Edge
+              </span>
+              <span className="block text-xs text-neutral-500 -mt-0.5">Consulting</span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center gap-1">
             <Link 
               to="/" 
-              className={`font-medium text-sm tracking-wide transition-colors duration-200 ${
-                showTransparent 
-                  ? "text-white hover:text-teal-light" 
-                  : "text-navy hover:text-teal"
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                isActive("/") 
+                  ? "text-brand-teal bg-brand-soft-teal" 
+                  : "text-neutral-700 hover:text-brand-teal hover:bg-neutral-100"
               }`}
             >
               Home
@@ -97,93 +101,67 @@ const Header = () => {
             <div className="relative" ref={dropdownRef}>
               <button 
                 onClick={() => setIsServicesOpen(!isServicesOpen)}
-                className={`flex items-center font-medium text-sm tracking-wide transition-colors duration-200 ${
-                  showTransparent 
-                    ? "text-white hover:text-teal-light" 
-                    : "text-navy hover:text-teal"
+                className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  isActive("/services") 
+                    ? "text-brand-teal bg-brand-soft-teal" 
+                    : "text-neutral-700 hover:text-brand-teal hover:bg-neutral-100"
                 }`}
               >
                 Services
-                <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
               </button>
               
               {isServicesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-72 bg-white shadow-2xl rounded-xl border border-slate-200 overflow-hidden z-50">
+                <div className="absolute top-full left-0 mt-2 w-72 bg-white shadow-xl rounded-xl border border-neutral-200 overflow-hidden z-50">
                   <div className="p-2">
+                    <Link 
+                      to="/services"
+                      onClick={handleServiceClick}
+                      className="block px-4 py-3 text-sm font-semibold text-brand-navy hover:bg-neutral-50 rounded-lg"
+                    >
+                      All Services
+                    </Link>
+                    <div className="border-t border-neutral-100 my-1" />
                     {services.map((service, idx) => (
-                      <a
+                      <Link
                         key={idx}
-                        href={service.path}
+                        to={service.path}
                         onClick={handleServiceClick}
-                        className="block px-4 py-3 text-sm text-slate hover:text-teal hover:bg-teal-light/50 rounded-lg transition-colors"
+                        className="block px-4 py-2.5 text-sm text-neutral-700 hover:text-brand-teal hover:bg-neutral-50 rounded-lg transition-colors"
                       >
                         {service.name}
-                      </a>
-                    ))}
-                    <div className="border-t border-slate-200 mt-2 pt-2">
-                      <Link 
-                        to="/services"
-                        onClick={handleServiceClick}
-                        className="block px-4 py-3 text-sm font-medium text-teal hover:bg-teal-light rounded-lg transition-colors"
-                      >
-                        View All Services →
                       </Link>
-                    </div>
+                    ))}
                   </div>
                 </div>
               )}
             </div>
 
-            <Link 
-              to="/industries" 
-              className={`font-medium text-sm tracking-wide transition-colors duration-200 ${
-                showTransparent 
-                  ? "text-white hover:text-teal-light" 
-                  : "text-navy hover:text-teal"
-              }`}
-            >
-              Who We Serve
-            </Link>
-            <Link 
-              to="/about" 
-              className={`font-medium text-sm tracking-wide transition-colors duration-200 ${
-                showTransparent 
-                  ? "text-white hover:text-teal-light" 
-                  : "text-navy hover:text-teal"
-              }`}
-            >
-              About
-            </Link>
-            <Link 
-              to="/contact" 
-              className={`font-medium text-sm tracking-wide transition-colors duration-200 ${
-                showTransparent 
-                  ? "text-white hover:text-teal-light" 
-                  : "text-navy hover:text-teal"
-              }`}
-            >
-              Contact
-            </Link>
+            {navLinks.slice(1).map((link) => (
+              <Link 
+                key={link.path}
+                to={link.path} 
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  isActive(link.path) 
+                    ? "text-brand-teal bg-brand-soft-teal" 
+                    : "text-neutral-700 hover:text-brand-teal hover:bg-neutral-100"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
             
             <a 
-              href="mailto:momentumedgeconsulting@gmail.com?subject=Assessment Request"
-              className={`font-medium px-6 py-2.5 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md ${
-                showTransparent 
-                  ? "bg-teal hover:bg-teal-dark text-white" 
-                  : "bg-teal hover:bg-teal-dark text-white"
-              }`}
+              href="mailto:momentumedgeconsulting@gmail.com?subject=Strategy Session Request"
+              className="ml-4 cta-primary text-sm px-6 py-2.5"
             >
-              Request Assessment
+              Schedule a Strategy Session
             </a>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              showTransparent 
-                ? "text-white hover:bg-white/10" 
-                : "text-navy hover:bg-slate-100"
-            }`}
+            className="lg:hidden p-2 rounded-lg text-neutral-700 hover:bg-neutral-100 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -193,49 +171,44 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden pb-6 bg-white rounded-b-xl shadow-lg">
-            <div className="flex flex-col space-y-1 pt-4 border-t border-slate-200">
+          <div className="lg:hidden mt-4 pb-6 border-t border-neutral-200 pt-4">
+            <div className="flex flex-col gap-1">
               <Link 
                 to="/" 
                 onClick={() => setIsMenuOpen(false)} 
-                className="px-4 py-3 text-navy hover:text-teal hover:bg-teal-light/30 rounded-lg font-medium"
+                className={`px-4 py-3 rounded-lg font-medium transition-colors ${
+                  isActive("/") ? "text-brand-teal bg-brand-soft-teal" : "text-neutral-700 hover:bg-neutral-100"
+                }`}
               >
                 Home
               </Link>
               <Link 
                 to="/services" 
                 onClick={() => setIsMenuOpen(false)} 
-                className="px-4 py-3 text-navy hover:text-teal hover:bg-teal-light/30 rounded-lg font-medium"
+                className={`px-4 py-3 rounded-lg font-medium transition-colors ${
+                  isActive("/services") ? "text-brand-teal bg-brand-soft-teal" : "text-neutral-700 hover:bg-neutral-100"
+                }`}
               >
                 Services
               </Link>
-              <Link 
-                to="/industries" 
-                onClick={() => setIsMenuOpen(false)} 
-                className="px-4 py-3 text-navy hover:text-teal hover:bg-teal-light/30 rounded-lg font-medium"
-              >
-                Who We Serve
-              </Link>
-              <Link 
-                to="/about" 
-                onClick={() => setIsMenuOpen(false)} 
-                className="px-4 py-3 text-navy hover:text-teal hover:bg-teal-light/30 rounded-lg font-medium"
-              >
-                About
-              </Link>
-              <Link 
-                to="/contact" 
-                onClick={() => setIsMenuOpen(false)} 
-                className="px-4 py-3 text-navy hover:text-teal hover:bg-teal-light/30 rounded-lg font-medium"
-              >
-                Contact
-              </Link>
+              {navLinks.slice(1).map((link) => (
+                <Link 
+                  key={link.path}
+                  to={link.path} 
+                  onClick={() => setIsMenuOpen(false)} 
+                  className={`px-4 py-3 rounded-lg font-medium transition-colors ${
+                    isActive(link.path) ? "text-brand-teal bg-brand-soft-teal" : "text-neutral-700 hover:bg-neutral-100"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
               <a 
-                href="mailto:momentumedgeconsulting@gmail.com?subject=Assessment Request"
+                href="mailto:momentumedgeconsulting@gmail.com?subject=Strategy Session Request"
                 onClick={() => setIsMenuOpen(false)}
-                className="mx-4 mt-4 bg-teal hover:bg-teal-dark text-white font-medium py-3 rounded-lg text-center transition-colors"
+                className="mt-4 cta-primary text-center"
               >
-                Request Assessment
+                Schedule a Strategy Session
               </a>
             </div>
           </div>

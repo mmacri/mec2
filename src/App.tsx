@@ -3,13 +3,14 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { ErrorBoundary } from "react-error-boundary";
 import { AnimatePresence } from "framer-motion";
+import { ErrorBoundary } from "react-error-boundary";
 import Index from "./pages/Index";
 import ServicesPage from "./pages/Services";
-import ExpertisePage from "./pages/Expertise";
 import IndustriesPage from "./pages/Industries";
+import ApproachPage from "./pages/Approach";
 import AboutPage from "./pages/About";
+import ResourcesPage from "./pages/Resources";
 import ContactPage from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -24,15 +25,14 @@ const queryClient = new QueryClient({
 
 const ErrorFallback = ({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) => {
   console.error("Application error:", error);
-  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center p-8">
-        <h1 className="text-2xl font-bold text-red-600 mb-4">Something went wrong</h1>
-        <p className="text-gray-600 mb-4">Please try refreshing the page</p>
-        <button 
+    <div className="min-h-screen bg-brand-soft-blue flex items-center justify-center p-6">
+      <div className="text-center max-w-md">
+        <h1 className="text-2xl font-bold text-brand-navy mb-4">Something went wrong</h1>
+        <p className="text-neutral-700 mb-6">{error.message}</p>
+        <button
           onClick={resetErrorBoundary}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+          className="cta-primary"
         >
           Try again
         </button>
@@ -41,7 +41,6 @@ const ErrorFallback = ({ error, resetErrorBoundary }: { error: Error; resetError
   );
 };
 
-// Animated routes wrapper
 const AnimatedRoutes = () => {
   const location = useLocation();
   
@@ -50,9 +49,10 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Index />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/expertise" element={<ExpertisePage />} />
         <Route path="/industries" element={<IndustriesPage />} />
+        <Route path="/approach" element={<ApproachPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/resources" element={<ResourcesPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
