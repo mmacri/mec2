@@ -8,7 +8,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import Index from "./pages/Index";
 import ServicesPage from "./pages/Services";
 import IndustriesPage from "./pages/Industries";
-import ApproachPage from "./pages/Approach";
 import AboutPage from "./pages/About";
 import ResourcesPage from "./pages/Resources";
 import ContactPage from "./pages/Contact";
@@ -50,7 +49,6 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Index />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/industries" element={<IndustriesPage />} />
-        <Route path="/approach" element={<ApproachPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/resources" element={<ResourcesPage />} />
         <Route path="/contact" element={<ContactPage />} />
