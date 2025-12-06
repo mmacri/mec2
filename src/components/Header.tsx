@@ -63,17 +63,21 @@ const Header = () => {
         <div className="flex justify-between items-center py-3">
           {/* Logo */}
           <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
-            <img 
-              src={logoPath}
-              alt="Momentum Edge Consulting" 
-              className="h-14 w-auto md:h-16 lg:h-20 object-contain"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                const fallback = document.createElement('div');
-                fallback.innerHTML = `<span class="text-xl font-bold text-navy">Momentum Edge</span>`;
-                e.currentTarget.parentNode?.appendChild(fallback);
-              }}
-            />
+            <div className={`rounded-lg transition-all duration-300 ${
+              showTransparent ? "bg-white/95 px-3 py-1 shadow-sm" : ""
+            }`}>
+              <img 
+                src={logoPath}
+                alt="Momentum Edge Consulting" 
+                className="h-14 w-auto md:h-16 lg:h-20 object-contain"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  const fallback = document.createElement('div');
+                  fallback.innerHTML = `<span class="text-xl font-bold text-navy">Momentum Edge</span>`;
+                  e.currentTarget.parentNode?.appendChild(fallback);
+                }}
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
