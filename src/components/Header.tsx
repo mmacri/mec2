@@ -70,7 +70,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
             <img 
-              src="/mec-logo.png"
+              src={`${import.meta.env.BASE_URL}mec-logo.png`}
               alt="Momentum Edge Consulting" 
               className="h-12 w-auto"
             />
