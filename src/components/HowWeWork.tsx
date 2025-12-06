@@ -31,27 +31,30 @@ const HowWeWork = () => {
   ];
 
   return (
-    <section className="section-padding gradient-navy text-white relative overflow-hidden">
+    <section className="section-padding bg-navy relative overflow-hidden">
       {/* Animated background pattern */}
       <motion.div 
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 opacity-10"
         animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
         transition={{ duration: 30, repeat: Infinity, repeatType: "reverse" }}
       >
         <svg width="100%" height="100%">
           <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5"/>
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3AAFA9" strokeWidth="0.5"/>
           </pattern>
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
       </motion.div>
+      
+      {/* Teal overlay */}
+      <div className="absolute inset-0 bg-teal/5 pointer-events-none" />
       
       <div className="container mx-auto px-6 relative z-10">
         <ScrollAnimation className="text-center mb-16">
           <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
             How We Work
           </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+          <p className="text-xl text-white/70 max-w-3xl mx-auto">
             Our proven methodology ensures sustainable results and lasting operational clarity.
           </p>
         </ScrollAnimation>
@@ -66,9 +69,9 @@ const HowWeWork = () => {
                   whileHover={{ y: -8 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-300 h-full">
+                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 hover:border-teal/30 transition-all duration-300 h-full">
                     <motion.div 
-                      className="text-teal-400 text-sm font-bold tracking-widest mb-4"
+                      className="text-teal text-sm font-bold tracking-widest mb-4"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       transition={{ delay: 0.3 + index * 0.1 }}
@@ -76,15 +79,15 @@ const HowWeWork = () => {
                       STEP {step.number}
                     </motion.div>
                     <motion.div 
-                      className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center mb-5"
+                      className="w-12 h-12 rounded-xl bg-teal/20 flex items-center justify-center mb-5"
                       whileHover={{ scale: 1.1, rotate: 10 }}
                     >
-                      <IconComponent className="w-6 h-6 text-teal-400" />
+                      <IconComponent className="w-6 h-6 text-teal" />
                     </motion.div>
                     <h3 className="text-xl font-semibold text-white mb-3">
                       {step.title}
                     </h3>
-                    <p className="text-slate-300 text-sm leading-relaxed">
+                    <p className="text-white/60 text-sm leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -92,7 +95,7 @@ const HowWeWork = () => {
                   {/* Connector line */}
                   {index < 3 && (
                     <motion.div 
-                      className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-teal-500/50 to-transparent"
+                      className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-teal/50 to-transparent"
                       initial={{ scaleX: 0 }}
                       whileInView={{ scaleX: 1 }}
                       transition={{ delay: 0.5 + index * 0.15, duration: 0.4 }}
