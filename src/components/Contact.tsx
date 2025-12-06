@@ -10,6 +10,8 @@ import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ScrollAnimation, StaggerContainer, StaggerItem } from "./ScrollAnimation";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name must be less than 100 characters"),
@@ -66,113 +68,151 @@ const Contact = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12 animate-fade-up">
+          <ScrollAnimation className="text-center mb-12">
             <h2 className="section-title mb-4">
               Let's Bring Clarity and Confidence to Your Organization
             </h2>
             <p className="text-lg text-slate-600">
               Tell us about your current challenges and what you'd like to achieve.
             </p>
-          </div>
+          </ScrollAnimation>
 
           {/* Form */}
-          <Card className="bg-white rounded-2xl p-8 lg:p-12 shadow-xl border-0 animate-fade-up animate-fade-up-delay-2">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <Label htmlFor="name" className="text-sm font-semibold text-slate-700">Name *</Label>
-                  <Input 
-                    id="name"
-                    {...register("name")}
-                    placeholder="Your name"
-                    className="mt-2 h-12 border-slate-200 focus:border-teal-500 focus:ring-teal-500"
-                  />
-                  {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name.message}</p>}
-                </div>
-                <div>
-                  <Label htmlFor="organization" className="text-sm font-semibold text-slate-700">Organization *</Label>
-                  <Input 
-                    id="organization"
-                    {...register("organization")}
-                    placeholder="Your organization"
-                    className="mt-2 h-12 border-slate-200 focus:border-teal-500 focus:ring-teal-500"
-                  />
-                  {errors.organization && <p className="text-sm text-red-500 mt-1">{errors.organization.message}</p>}
-                </div>
-              </div>
+          <ScrollAnimation delay={0.2} variant="scale">
+            <motion.div
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="bg-white rounded-2xl p-8 lg:p-12 shadow-xl border-0">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                    >
+                      <Label htmlFor="name" className="text-sm font-semibold text-slate-700">Name *</Label>
+                      <Input 
+                        id="name"
+                        {...register("name")}
+                        placeholder="Your name"
+                        className="mt-2 h-12 border-slate-200 focus:border-teal-500 focus:ring-teal-500"
+                      />
+                      {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name.message}</p>}
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.15 }}
+                    >
+                      <Label htmlFor="organization" className="text-sm font-semibold text-slate-700">Organization *</Label>
+                      <Input 
+                        id="organization"
+                        {...register("organization")}
+                        placeholder="Your organization"
+                        className="mt-2 h-12 border-slate-200 focus:border-teal-500 focus:ring-teal-500"
+                      />
+                      {errors.organization && <p className="text-sm text-red-500 mt-1">{errors.organization.message}</p>}
+                    </motion.div>
+                  </div>
 
-              <div>
-                <Label htmlFor="email" className="text-sm font-semibold text-slate-700">Email *</Label>
-                <Input 
-                  id="email"
-                  type="email"
-                  {...register("email")}
-                  placeholder="your.email@organization.com"
-                  className="mt-2 h-12 border-slate-200 focus:border-teal-500 focus:ring-teal-500"
-                />
-                {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>}
-              </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <Label htmlFor="email" className="text-sm font-semibold text-slate-700">Email *</Label>
+                    <Input 
+                      id="email"
+                      type="email"
+                      {...register("email")}
+                      placeholder="your.email@organization.com"
+                      className="mt-2 h-12 border-slate-200 focus:border-teal-500 focus:ring-teal-500"
+                    />
+                    {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>}
+                  </motion.div>
 
-              <div>
-                <Label className="text-sm font-semibold text-slate-700 mb-4 block">
-                  What are your current challenges? * <span className="font-normal text-slate-500">(select all that apply)</span>
-                </Label>
-                <Controller
-                  name="challenges"
-                  control={control}
-                  render={({ field }) => (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      {challenges.map((challenge) => (
-                        <div 
-                          key={challenge}
-                          className={`flex items-center space-x-3 p-4 rounded-xl border transition-all duration-200 cursor-pointer ${
-                            selectedChallenges.includes(challenge) 
-                              ? 'border-teal-500 bg-teal-50' 
-                              : 'border-slate-200 hover:border-slate-300'
-                          }`}
-                          onClick={() => {
-                            const newChecked = !selectedChallenges.includes(challenge);
-                            handleChallengeToggle(challenge, newChecked);
-                            if (newChecked) {
-                              field.onChange([...field.value, challenge]);
-                            } else {
-                              field.onChange(field.value.filter((c: string) => c !== challenge));
-                            }
-                          }}
-                        >
-                          <Checkbox
-                            checked={selectedChallenges.includes(challenge)}
-                            className="border-slate-300 data-[state=checked]:bg-teal-500 data-[state=checked]:border-teal-500"
-                          />
-                          <span className="text-sm text-slate-700">{challenge}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                />
-                {errors.challenges && <p className="text-sm text-red-500 mt-2">{errors.challenges.message}</p>}
-              </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25 }}
+                  >
+                    <Label className="text-sm font-semibold text-slate-700 mb-4 block">
+                      What are your current challenges? * <span className="font-normal text-slate-500">(select all that apply)</span>
+                    </Label>
+                    <Controller
+                      name="challenges"
+                      control={control}
+                      render={({ field }) => (
+                        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-3" staggerDelay={0.05}>
+                          {challenges.map((challenge) => (
+                            <StaggerItem key={challenge}>
+                              <motion.div 
+                                className={`flex items-center space-x-3 p-4 rounded-xl border transition-all duration-200 cursor-pointer ${
+                                  selectedChallenges.includes(challenge) 
+                                    ? 'border-teal-500 bg-teal-50' 
+                                    : 'border-slate-200 hover:border-slate-300'
+                                }`}
+                                onClick={() => {
+                                  const newChecked = !selectedChallenges.includes(challenge);
+                                  handleChallengeToggle(challenge, newChecked);
+                                  if (newChecked) {
+                                    field.onChange([...field.value, challenge]);
+                                  } else {
+                                    field.onChange(field.value.filter((c: string) => c !== challenge));
+                                  }
+                                }}
+                                whileHover={{ scale: 1.01 }}
+                                whileTap={{ scale: 0.99 }}
+                              >
+                                <Checkbox
+                                  checked={selectedChallenges.includes(challenge)}
+                                  className="border-slate-300 data-[state=checked]:bg-teal-500 data-[state=checked]:border-teal-500"
+                                />
+                                <span className="text-sm text-slate-700">{challenge}</span>
+                              </motion.div>
+                            </StaggerItem>
+                          ))}
+                        </StaggerContainer>
+                      )}
+                    />
+                    {errors.challenges && <p className="text-sm text-red-500 mt-2">{errors.challenges.message}</p>}
+                  </motion.div>
 
-              <div>
-                <Label htmlFor="outcome" className="text-sm font-semibold text-slate-700">What outcome do you want to achieve? *</Label>
-                <Textarea 
-                  id="outcome"
-                  {...register("outcome")}
-                  placeholder="Describe your goals — for example: 'We need to prepare for an upcoming audit' or 'We want to formalize our governance structure before scaling...'"
-                  className="mt-2 min-h-[140px] border-slate-200 focus:border-teal-500 focus:ring-teal-500"
-                />
-                {errors.outcome && <p className="text-sm text-red-500 mt-1">{errors.outcome.message}</p>}
-              </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <Label htmlFor="outcome" className="text-sm font-semibold text-slate-700">What outcome do you want to achieve? *</Label>
+                    <Textarea 
+                      id="outcome"
+                      {...register("outcome")}
+                      placeholder="Describe your goals — for example: 'We need to prepare for an upcoming audit' or 'We want to formalize our governance structure before scaling...'"
+                      className="mt-2 min-h-[140px] border-slate-200 focus:border-teal-500 focus:ring-teal-500"
+                    />
+                    {errors.outcome && <p className="text-sm text-red-500 mt-1">{errors.outcome.message}</p>}
+                  </motion.div>
 
-              <Button 
-                type="submit"
-                className="w-full cta-primary h-14 text-base group"
-              >
-                Request an Assessment
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-              </Button>
-            </form>
-          </Card>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.35 }}
+                  >
+                    <motion.button 
+                      type="submit"
+                      className="w-full cta-primary h-14 text-base group"
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                    >
+                      Request an Assessment
+                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                    </motion.button>
+                  </motion.div>
+                </form>
+              </Card>
+            </motion.div>
+          </ScrollAnimation>
         </div>
       </div>
     </section>

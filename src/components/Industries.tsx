@@ -1,4 +1,6 @@
 import { Hospital, Zap, Building2, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ScrollAnimation, StaggerContainer, StaggerItem } from "./ScrollAnimation";
 
 const Industries = () => {
   const industries = [
@@ -65,75 +67,94 @@ const Industries = () => {
   return (
     <section className="section-padding bg-white">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-up">
+        <ScrollAnimation className="text-center mb-16">
           <h2 className="section-title">Who We Serve</h2>
           <p className="section-subtitle">
             We work with organizations that must operate at a high standard — 
             even without the headcount of large enterprises.
           </p>
-        </div>
+        </ScrollAnimation>
 
-        <div className="space-y-12 max-w-5xl mx-auto">
+        <StaggerContainer className="space-y-12 max-w-5xl mx-auto" staggerDelay={0.15}>
           {industries.map((industry, index) => {
             const IconComponent = industry.icon;
             return (
-              <div 
-                key={index}
-                className="rounded-3xl overflow-hidden border border-slate-200 hover:shadow-xl transition-all duration-300 animate-fade-up"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-5">
-                  {/* Left - Visual */}
-                  <div 
-                    className="lg:col-span-2 p-10 flex flex-col justify-center items-center text-center"
-                    style={{ background: industry.image }}
-                  >
-                    <div className="w-20 h-20 rounded-2xl bg-white/80 backdrop-blur flex items-center justify-center mb-6 shadow-lg">
-                      <IconComponent className="w-10 h-10 text-slate-700" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-2">{industry.title}</h3>
-                    <p className="text-slate-600">{industry.subtitle}</p>
-                  </div>
-                  
-                  {/* Right - Content */}
-                  <div className="lg:col-span-3 p-10 bg-white">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                      <div>
-                        <h4 className="text-sm font-bold text-red-500 uppercase tracking-wide mb-4">Common Pain Points</h4>
-                        <ul className="space-y-2">
-                          {industry.painPoints.map((point, idx) => (
-                            <li key={idx} className="flex items-start text-sm text-slate-600">
-                              <span className="text-red-400 mr-2">•</span>
-                              {point}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-bold text-teal-600 uppercase tracking-wide mb-4">What We Solve</h4>
-                        <ul className="space-y-2">
-                          {industry.solutions.map((solution, idx) => (
-                            <li key={idx} className="flex items-start text-sm text-slate-700">
-                              <span className="text-teal-500 mr-2">✓</span>
-                              {solution}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                    <a 
-                      href="mailto:momentumedgeconsulting@gmail.com?subject=Industry Assessment Request"
-                      className="inline-flex items-center text-teal-600 font-medium hover:text-teal-700 transition-colors"
+              <StaggerItem key={index}>
+                <motion.div 
+                  className="rounded-3xl overflow-hidden border border-slate-200 transition-all duration-300"
+                  whileHover={{ y: -6, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.1)" }}
+                >
+                  <div className="grid grid-cols-1 lg:grid-cols-5">
+                    <motion.div 
+                      className="lg:col-span-2 p-10 flex flex-col justify-center items-center text-center"
+                      style={{ background: industry.image }}
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      {industry.cta}
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </a>
+                      <motion.div 
+                        className="w-20 h-20 rounded-2xl bg-white/80 backdrop-blur flex items-center justify-center mb-6 shadow-lg"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                      >
+                        <IconComponent className="w-10 h-10 text-slate-700" />
+                      </motion.div>
+                      <h3 className="text-2xl font-bold text-slate-900 mb-2">{industry.title}</h3>
+                      <p className="text-slate-600">{industry.subtitle}</p>
+                    </motion.div>
+                    
+                    <div className="lg:col-span-3 p-10 bg-white">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                          <h4 className="text-sm font-bold text-red-500 uppercase tracking-wide mb-4">Common Pain Points</h4>
+                          <ul className="space-y-2">
+                            {industry.painPoints.map((point, idx) => (
+                              <motion.li 
+                                key={idx} 
+                                className="flex items-start text-sm text-slate-600"
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.05 * idx }}
+                                viewport={{ once: true }}
+                              >
+                                <span className="text-red-400 mr-2">•</span>
+                                {point}
+                              </motion.li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-teal-600 uppercase tracking-wide mb-4">What We Solve</h4>
+                          <ul className="space-y-2">
+                            {industry.solutions.map((solution, idx) => (
+                              <motion.li 
+                                key={idx} 
+                                className="flex items-start text-sm text-slate-700"
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.05 * idx }}
+                                viewport={{ once: true }}
+                              >
+                                <span className="text-teal-500 mr-2">✓</span>
+                                {solution}
+                              </motion.li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                      <motion.a 
+                        href="mailto:momentumedgeconsulting@gmail.com?subject=Industry Assessment Request"
+                        className="inline-flex items-center text-teal-600 font-medium hover:text-teal-700 transition-colors"
+                        whileHover={{ x: 5 }}
+                      >
+                        {industry.cta}
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </motion.a>
+                    </div>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
