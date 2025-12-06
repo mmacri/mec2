@@ -1,15 +1,14 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, GitBranch, Users, ClipboardCheck, Monitor } from "lucide-react";
+import { FileText, GitBranch, Users, ClipboardCheck, Monitor, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const services = [
     {
       id: "policy",
-      title: "Policy & Control Development",
-      description: "We create policies and controls that reflect the way your organization actually works — not templates copied from the internet.",
       icon: FileText,
-      color: "text-blue-500",
-      bgColor: "bg-blue-50",
+      title: "Policy & Control Development",
+      problem: "Policies that are outdated, unclear, or disconnected from actual operations.",
+      solution: "We create policies and controls that reflect the way your organization actually works — not templates copied from the internet.",
       deliverables: [
         "Policies in plain language",
         "Control catalogs with owners, frequency, evidence expectations",
@@ -18,14 +17,12 @@ const Services = () => {
     },
     {
       id: "governance",
-      title: "Governance & Process Design",
-      description: "Organizations need more than documents — they need structure.",
       icon: GitBranch,
-      color: "text-teal-500",
-      bgColor: "bg-teal-50",
+      title: "Governance & Process Design",
+      problem: "Unclear decision rights, ad-hoc workflows, and governance that exists only on paper.",
+      solution: "Organizations need more than documents — they need structure that defines how work gets done.",
       deliverables: [
-        "Process flows",
-        "Standard Operating Procedures (SOPs)",
+        "Process flows and SOPs",
         "RACI charts",
         "Committee structures",
         "Decision-rights definitions"
@@ -33,11 +30,10 @@ const Services = () => {
     },
     {
       id: "staffing",
-      title: "Staffing & Responsibility Modeling",
-      description: "Clarifying who does what eliminates risk and frustration.",
       icon: Users,
-      color: "text-purple-500",
-      bgColor: "bg-purple-50",
+      title: "Staffing & Responsibility Modeling",
+      problem: "Role confusion, overlapping duties, and gaps in accountability.",
+      solution: "Clarifying who does what eliminates risk and frustration.",
       deliverables: [
         "Role definitions",
         "RACI models",
@@ -47,26 +43,23 @@ const Services = () => {
     },
     {
       id: "compliance",
-      title: "Compliance & Audit Readiness",
-      description: "We prepare your organization for any regulatory review.",
       icon: ClipboardCheck,
-      color: "text-orange-500",
-      bgColor: "bg-orange-50",
+      title: "Compliance & Audit Readiness",
+      problem: "Upcoming audits with incomplete documentation and unclear evidence.",
+      solution: "We prepare your organization for any regulatory review.",
       deliverables: [
         "Evidence plans",
         "Maturity assessments",
         "Audit packets",
-        "Remediation plans",
         "Mock audit sessions"
       ]
     },
     {
       id: "it-governance",
-      title: "IT Governance & Advisory",
-      description: "Technology governance for small and mid-size regulated organizations.",
       icon: Monitor,
-      color: "text-indigo-500",
-      bgColor: "bg-indigo-50",
+      title: "IT Governance & Advisory",
+      problem: "IT operations without clear governance, ownership, or documentation.",
+      solution: "Technology governance for small and mid-size regulated organizations.",
       deliverables: [
         "Access and change governance",
         "System responsibility structures",
@@ -77,13 +70,11 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section className="section-padding bg-white">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-8 heading-enhanced">
-            Our Services
-          </h2>
-          <p className="text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
+        <div className="text-center mb-16 animate-fade-up">
+          <h2 className="section-title">Our Services</h2>
+          <p className="section-subtitle">
             We help regulated organizations build the policies, controls, governance structures, 
             and operational processes they need to operate with confidence.
           </p>
@@ -93,55 +84,64 @@ const Services = () => {
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
-              <Card 
-                key={index} 
+              <div 
+                key={index}
                 id={service.id}
-                className="feature-card group overflow-hidden"
+                className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-teal-200 transition-all duration-300 animate-fade-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="flex flex-col lg:flex-row">
-                  <div className={`${service.bgColor} p-8 lg:w-1/3 flex flex-col items-center justify-center`}>
-                    <div className={`${service.color} mb-4`}>
-                      <IconComponent size={64} className="group-hover:scale-110 transition-transform duration-300" />
+                <div className="grid grid-cols-1 lg:grid-cols-3">
+                  {/* Left column - Icon and title */}
+                  <div className="bg-slate-50 p-8 flex flex-col justify-center items-center text-center">
+                    <div className="w-16 h-16 rounded-2xl bg-teal-100 flex items-center justify-center mb-4">
+                      <IconComponent className="w-8 h-8 text-teal-600" />
                     </div>
-                    <CardTitle className="text-xl text-slate-900 text-center font-semibold group-hover:text-teal-600 transition-colors duration-300">
-                      {service.title}
-                    </CardTitle>
+                    <h3 className="text-xl font-bold text-slate-900">{service.title}</h3>
                   </div>
-                  <div className="p-8 lg:w-2/3">
-                    <CardDescription className="text-gray-700 font-medium leading-relaxed text-lg mb-6">
-                      {service.description}
-                    </CardDescription>
+                  
+                  {/* Right column - Content */}
+                  <div className="lg:col-span-2 p-8">
+                    <div className="mb-6">
+                      <div className="text-sm font-semibold text-red-500 uppercase tracking-wide mb-2">The Problem</div>
+                      <p className="text-slate-600">{service.problem}</p>
+                    </div>
+                    <div className="mb-6">
+                      <div className="text-sm font-semibold text-teal-600 uppercase tracking-wide mb-2">Our Solution</div>
+                      <p className="text-slate-700 font-medium">{service.solution}</p>
+                    </div>
                     <div>
-                      <h4 className="font-semibold text-slate-900 mb-4">Deliverables:</h4>
-                      <ul className="space-y-2">
+                      <div className="text-sm font-semibold text-slate-900 uppercase tracking-wide mb-3">Deliverables</div>
+                      <div className="flex flex-wrap gap-2">
                         {service.deliverables.map((deliverable, idx) => (
-                          <li key={idx} className="flex items-start">
-                            <span className="text-teal-500 mr-3 mt-1 font-bold">✓</span>
-                            <span className="text-gray-600 font-medium">{deliverable}</span>
-                          </li>
+                          <span 
+                            key={idx}
+                            className="inline-flex items-center bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm"
+                          >
+                            {deliverable}
+                          </span>
                         ))}
-                      </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </Card>
+              </div>
             );
           })}
         </div>
 
-        <div className="text-center mt-16">
-          <div className="bg-slate-900 rounded-xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">Ready to Bring Clarity to Your Organization?</h3>
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              Request a governance and compliance assessment to identify opportunities for improvement 
-              and create a roadmap for operational confidence.
+        {/* CTA */}
+        <div className="text-center mt-16 animate-fade-up">
+          <div className="bg-slate-900 rounded-2xl p-10 max-w-3xl mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-4">Ready to Get Started?</h3>
+            <p className="text-slate-300 mb-8">
+              Request a governance and compliance assessment to identify opportunities and create a roadmap.
             </p>
             <a 
-              href="mailto:momentumedgeconsulting@gmail.com?subject=Governance %26 Compliance Assessment Request&body=Hello, I would like to request a governance and compliance assessment."
-              className="bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold text-lg px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg inline-flex items-center justify-center"
-              style={{ boxShadow: '0 8px 24px rgba(20, 184, 166, 0.4)' }}
+              href="mailto:momentumedgeconsulting@gmail.com?subject=Governance Assessment Request"
+              className="cta-primary group"
             >
               Request an Assessment
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </a>
           </div>
         </div>
