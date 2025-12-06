@@ -6,7 +6,7 @@ import SectionWrapper from "@/components/ui/SectionWrapper";
 import PageTransition from "@/components/PageTransition";
 import useScrollToHash from "@/hooks/useScrollToHash";
 import { motion } from "framer-motion";
-import { FileText, Shield, Users, ClipboardCheck, Monitor, CheckCircle } from "lucide-react";
+import { FileText, Shield, Users, ClipboardCheck, Monitor, CheckCircle, Cloud, Server, Settings, Briefcase } from "lucide-react";
 import { useEffect } from "react";
 
 const serviceDetails = [
@@ -102,6 +102,29 @@ const serviceDetails = [
   }
 ];
 
+const extendedServices = [
+  {
+    icon: Cloud,
+    title: "Cloud & Infrastructure",
+    description: "Cloud migration, VMware solutions, and infrastructure modernization"
+  },
+  {
+    icon: Server,
+    title: "ServiceNow Solutions",
+    description: "Implementation, optimization, and workflow automation"
+  },
+  {
+    icon: Settings,
+    title: "IT Remediation Advisory",
+    description: "Technical remediation planning for regulatory compliance"
+  },
+  {
+    icon: Briefcase,
+    title: "CIO Advisory Services",
+    description: "Strategic IT leadership and technology roadmap development"
+  }
+];
+
 const faqData = [
   {
     question: "What is Policy & Control Development?",
@@ -118,6 +141,10 @@ const faqData = [
   {
     question: "Do you provide IT Governance services?",
     answer: "Yes, we provide technology governance including access governance, change management, and IT process documentation."
+  },
+  {
+    question: "Do you offer IT and cloud services?",
+    answer: "Yes, we partner with clients on cloud migrations, VMware solutions, ServiceNow implementations, and provide CIO advisory services for organizations needing strategic IT leadership."
   }
 ];
 
@@ -245,6 +272,75 @@ const ServicesPage = () => {
               </motion.div>
             ))}
           </div>
+        </SectionWrapper>
+
+        {/* Extended IT Services Section */}
+        <SectionWrapper variant="neutral" id="technology">
+          <div className="text-center mb-12">
+            <motion.span
+              className="inline-block px-4 py-1.5 bg-brand-teal/10 text-brand-teal text-sm font-medium rounded-full mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Extended Capabilities
+            </motion.span>
+            <motion.h2 
+              className="section-title"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Technology & IT Advisory
+            </motion.h2>
+            <motion.p 
+              className="section-subtitle max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              Beyond governance, we provide hands-on technology expertise to help you modernize infrastructure and achieve regulatory compliance.
+            </motion.p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {extendedServices.map((service, index) => (
+              <motion.div
+                key={service.title}
+                className="bg-background rounded-xl p-6 border border-neutral-200 hover:border-brand-teal/30 hover:shadow-lg transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -4 }}
+              >
+                <div className="icon-container mb-4">
+                  <service.icon className="w-6 h-6 text-brand-teal" />
+                </div>
+                <h3 className="text-lg font-semibold text-brand-navy mb-2">{service.title}</h3>
+                <p className="text-sm text-neutral-600">{service.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            className="mt-10 text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >
+            <p className="text-neutral-600 mb-4">
+              Need technology support alongside governance work?
+            </p>
+            <a
+              href="mailto:momentumedgeconsulting@gmail.com?subject=IT & Technology Services Inquiry"
+              className="inline-flex items-center gap-2 text-brand-teal font-medium hover:text-brand-teal-dark transition-colors"
+            >
+              Let's discuss your technology needs →
+            </a>
+          </motion.div>
         </SectionWrapper>
 
         <PrimaryCTASection />
