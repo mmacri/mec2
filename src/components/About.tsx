@@ -1,22 +1,20 @@
-
-import { Card, CardContent } from "@/components/ui/card";
+import { CheckCircle } from "lucide-react";
 
 const About = () => {
-  const achievements = [
-    { number: "25+", label: "Years of Technology Advisory" },
-    { number: "1000's", label: "Successful IT Implementations" },
-    { number: "Dental & Medical", label: "Practice Management Solutions" },
-    { number: "Small to Medium", label: "Office Management Solutions" }
+  const differentiators = [
+    "We combine compliance, governance, IT, and operational process design — most consultants only do one.",
+    "We work at the human level, helping real people adopt processes that fit their daily work.",
+    "We speak the languages of medical offices, utilities, and regulated enterprises.",
+    "We turn complex requirements into clear, usable structures."
   ];
 
-  const expertise = [
-    "Technology Advisory & Strategic Planning",
-    "Governance, Risk & Compliance (GRC) Programs",
-    "Information Security & Cybersecurity Leadership",
-    "Healthcare IT & HIPAA Compliance Solutions", 
-    "AI Innovation & Responsible Governance",
-    "Partner & Strategic Alliances",
-    "Cloud Infrastructure & Digital Transformation"
+  const highlights = [
+    "Policy and control design",
+    "Governance frameworks",
+    "IT operational maturity",
+    "Staffing and responsibility modeling",
+    "ServiceNow, VMware, and enterprise technology advisory",
+    "Audit readiness for regulated environments"
   ];
 
   return (
@@ -26,66 +24,57 @@ const About = () => {
           {/* Header */}
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-8 heading-enhanced">
-              About Momentum Edge
+              Bringing Clarity and Operational Confidence to Regulated Organizations
             </h2>
             <p className="text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
-              Extensive professional background in technology advisory, governance, risk & compliance (GRC), information security, 
-              healthcare IT solutions, AI innovation, partner enablement, and comprehensive IT management with proven results 
-              that deliver solutions across industries and scale, taking into account the audience, value, and business benefits. 
-              Guidance available as needed or proactively.
+              Momentum Edge Consulting was founded to help organizations operate with clarity, structure, 
+              and confidence in environments where ambiguity is costly — and regulators expect discipline.
+            </p>
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium mt-6">
+              We work with organizations that must function at a high operational standard, 
+              even without the headcount of large enterprises.
             </p>
           </div>
 
-          {/* Achievement Stats */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {achievements.map((achievement, index) => (
-              <Card key={index} className="feature-card text-center group">
-                <CardContent className="p-8">
-                  <div className="text-3xl lg:text-4xl font-bold text-green-500 mb-3 group-hover:scale-110 transition-transform duration-300">
-                    {achievement.number}
-                  </div>
-                  <div className="text-gray-600 font-semibold text-sm leading-tight">
-                    {achievement.label}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          {/* What Makes Us Different */}
+          <div className="mb-16">
+            <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-8 text-center heading-enhanced">
+              What Makes Us Different
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {differentiators.map((item, index) => (
+                <div 
+                  key={index}
+                  className="flex items-start bg-teal-50 border border-teal-100 p-6 rounded-xl group hover:shadow-lg transition-all duration-300"
+                >
+                  <CheckCircle className="text-teal-500 mr-4 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" size={24} />
+                  <span className="text-gray-700 font-medium leading-relaxed">{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div className="animate-fade-in">
-              <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-6 heading-enhanced">
-                Proven Technology Advisory & Solutions
-              </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed font-medium">
-                With over 25 years of experience in technology advisory and strategic consulting, 
-                Momentum Edge Consulting brings deep expertise across governance, risk management, compliance (GRC), information security, 
-                healthcare IT solutions, AI innovation, partner enablement, and comprehensive IT management that delivers measurable results.
-              </p>
-              <p className="text-gray-600 mb-6 leading-relaxed font-medium">
-                From architecting regulatory compliance programs (HIPAA, SOC 2, ISO 27001) to developing 
-                comprehensive information security and AI governance frameworks, MEC has successfully guided 
-                organizations through complex technology transformations while ensuring compliance, managing risk, 
-                and driving sustainable growth. Guidance available as needed or proactively.
-              </p>
-            </div>
-
-            <div className="animate-scale-in">
-              <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-6 heading-enhanced">
-                Core Expertise Areas
-              </h3>
-              <div className="space-y-4">
-                {expertise.map((area, index) => (
-                  <div 
-                    key={index} 
-                    className="flex items-center bg-gray-50 p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-gray-100 group"
-                  >
-                    <span className="text-green-500 mr-4 text-xl font-bold group-hover:scale-110 transition-transform duration-300">✓</span>
-                    <span className="font-semibold text-gray-700">{area}</span>
-                  </div>
-                ))}
-              </div>
+          {/* About MEC */}
+          <div className="bg-slate-900 rounded-2xl p-8 lg:p-12 text-white">
+            <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-center">
+              About Momentum Edge Consulting
+            </h3>
+            <p className="text-lg text-gray-300 mb-8 text-center max-w-3xl mx-auto leading-relaxed">
+              Momentum Edge Consulting is a business technology and governance advisory firm with deep experience 
+              in compliance-driven industries. Our work spans healthcare, utilities, and enterprise IT, 
+              bringing clarity to complex environments and helping organizations operate with confidence.
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {highlights.map((highlight, index) => (
+                <div 
+                  key={index}
+                  className="flex items-center bg-white/10 rounded-lg p-4 group hover:bg-white/15 transition-all duration-300"
+                >
+                  <span className="text-teal-400 mr-3 font-bold">✓</span>
+                  <span className="font-medium">{highlight}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
