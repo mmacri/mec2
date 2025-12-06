@@ -19,8 +19,11 @@ const Header = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
+    { name: "Services", path: "/services", hasDropdown: true },
     { name: "Industries", path: "/industries" },
+    { name: "Approach", path: "/approach" },
     { name: "About", path: "/about" },
+    { name: "Resources", path: "/resources" },
     { name: "Contact", path: "/contact" }
   ];
 
@@ -84,76 +87,70 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
-            <Link 
-              to="/" 
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                isActive("/") 
-                  ? "text-brand-teal bg-brand-soft-teal" 
-                  : "text-neutral-700 hover:text-brand-teal hover:bg-neutral-100"
-              }`}
-            >
-              Home
-            </Link>
-            
-            {/* Services Dropdown */}
-            <div className="relative" ref={dropdownRef}>
-              <button 
-                onClick={() => setIsServicesOpen(!isServicesOpen)}
-                className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  isActive("/services") 
-                    ? "text-brand-teal bg-brand-soft-teal" 
-                    : "text-neutral-700 hover:text-brand-teal hover:bg-neutral-100"
-                }`}
-              >
-                Services
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {isServicesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-72 bg-white shadow-xl rounded-xl border border-neutral-200 overflow-hidden z-50">
-                  <div className="p-2">
-                    <Link 
-                      to="/services"
-                      onClick={handleServiceClick}
-                      className="block px-4 py-3 text-sm font-semibold text-brand-navy hover:bg-neutral-50 rounded-lg"
+            {navLinks.map((link) => {
+              if (link.hasDropdown) {
+                return (
+                  <div className="relative" ref={dropdownRef} key={link.path}>
+                    <button 
+                      onClick={() => setIsServicesOpen(!isServicesOpen)}
+                      className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        isActive("/services") 
+                          ? "text-brand-teal bg-brand-soft-teal" 
+                          : "text-neutral-700 hover:text-brand-teal hover:bg-neutral-100"
+                      }`}
                     >
-                      All Services
-                    </Link>
-                    <div className="border-t border-neutral-100 my-1" />
-                    {services.map((service, idx) => (
-                      <Link
-                        key={idx}
-                        to={service.path}
-                        onClick={handleServiceClick}
-                        className="block px-4 py-2.5 text-sm text-neutral-700 hover:text-brand-teal hover:bg-neutral-50 rounded-lg transition-colors"
-                      >
-                        {service.name}
-                      </Link>
-                    ))}
+                      {link.name}
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    {isServicesOpen && (
+                      <div className="absolute top-full left-0 mt-2 w-72 bg-white shadow-xl rounded-xl border border-neutral-200 overflow-hidden z-50">
+                        <div className="p-2">
+                          <Link 
+                            to="/services"
+                            onClick={handleServiceClick}
+                            className="block px-4 py-3 text-sm font-semibold text-brand-navy hover:bg-neutral-50 rounded-lg"
+                          >
+                            All Services
+                          </Link>
+                          <div className="border-t border-neutral-100 my-1" />
+                          {services.map((service, idx) => (
+                            <Link
+                              key={idx}
+                              to={service.path}
+                              onClick={handleServiceClick}
+                              className="block px-4 py-2.5 text-sm text-neutral-700 hover:text-brand-teal hover:bg-neutral-50 rounded-lg transition-colors"
+                            >
+                              {service.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
-              )}
-            </div>
-
-            {navLinks.slice(1).map((link) => (
-              <Link 
-                key={link.path}
-                to={link.path} 
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  isActive(link.path) 
-                    ? "text-brand-teal bg-brand-soft-teal" 
-                    : "text-neutral-700 hover:text-brand-teal hover:bg-neutral-100"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+                );
+              }
+              
+              return (
+                <Link 
+                  key={link.path}
+                  to={link.path} 
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    isActive(link.path) 
+                      ? "text-brand-teal bg-brand-soft-teal" 
+                      : "text-neutral-700 hover:text-brand-teal hover:bg-neutral-100"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
             
             <a 
               href="mailto:momentumedgeconsulting@gmail.com?subject=Strategy Session Request"
-              className="ml-4 cta-primary text-sm px-6 py-2.5"
+              className="ml-4 cta-primary text-sm px-5 py-2.5"
             >
-              Schedule a Strategy Session
+              Book a Call
             </a>
           </nav>
 
@@ -171,25 +168,7 @@ const Header = () => {
         {isMenuOpen && (
           <div className="lg:hidden mt-4 pb-6 border-t border-neutral-200 pt-4">
             <div className="flex flex-col gap-1">
-              <Link 
-                to="/" 
-                onClick={() => setIsMenuOpen(false)} 
-                className={`px-4 py-3 rounded-lg font-medium transition-colors ${
-                  isActive("/") ? "text-brand-teal bg-brand-soft-teal" : "text-neutral-700 hover:bg-neutral-100"
-                }`}
-              >
-                Home
-              </Link>
-              <Link 
-                to="/services" 
-                onClick={() => setIsMenuOpen(false)} 
-                className={`px-4 py-3 rounded-lg font-medium transition-colors ${
-                  isActive("/services") ? "text-brand-teal bg-brand-soft-teal" : "text-neutral-700 hover:bg-neutral-100"
-                }`}
-              >
-                Services
-              </Link>
-              {navLinks.slice(1).map((link) => (
+              {navLinks.map((link) => (
                 <Link 
                   key={link.path}
                   to={link.path} 
@@ -206,7 +185,7 @@ const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className="mt-4 cta-primary text-center"
               >
-                Schedule a Strategy Session
+                Book a Call
               </a>
             </div>
           </div>

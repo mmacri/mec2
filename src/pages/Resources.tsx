@@ -5,29 +5,64 @@ import NewsletterSignupStrip from "@/components/marketing/NewsletterSignupStrip"
 import PrimaryCTASection from "@/components/marketing/PrimaryCTASection";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import PageTransition from "@/components/PageTransition";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
+import { FileText, Download, ExternalLink } from "lucide-react";
 
 const resources = [
   {
     title: "10 Common Governance Gaps in Medical Practices",
     description: "A practical guide to identifying and addressing the most frequent governance challenges in healthcare settings.",
-    category: "Healthcare"
+    category: "Healthcare",
+    type: "Guide"
   },
   {
     title: "Utility Control Framework Starter Template",
     description: "A foundational template for building control catalogs aligned with regulatory requirements in the utilities sector.",
-    category: "Utilities"
+    category: "Utilities",
+    type: "Template"
   },
   {
     title: "How to Write Policies People Actually Follow",
     description: "Best practices for creating clear, actionable policies that staff will read, understand, and implement.",
-    category: "All Industries"
+    category: "All Industries",
+    type: "Article"
+  },
+  {
+    title: "Audit Readiness Checklist",
+    description: "A comprehensive checklist to ensure your organization is prepared for regulatory audits and inspections.",
+    category: "Compliance",
+    type: "Checklist"
+  },
+  {
+    title: "RACI Matrix Template for Healthcare",
+    description: "A ready-to-use template for defining roles and responsibilities in medical practice operations.",
+    category: "Healthcare",
+    type: "Template"
+  },
+  {
+    title: "5 Signs Your Organization Needs Governance Help",
+    description: "Key indicators that your organization would benefit from structured governance support.",
+    category: "All Industries",
+    type: "Article"
   }
+];
+
+const upcomingResources = [
+  "Compliance Calendar for Utilities",
+  "IT Governance Quick-Start Guide",
+  "Policy Lifecycle Management Framework",
+  "Evidence Collection Best Practices"
 ];
 
 const ResourcesPage = () => {
   return (
     <PageTransition>
+      <SEO 
+        title="Resources & Insights"
+        description="Practical governance guides, templates, and insights for medical practices, utilities, and compliance-driven organizations. Free resources from Momentum Edge Consulting."
+        canonical="/resources"
+      />
       <div className="min-h-screen bg-background">
         <Header />
         
@@ -53,13 +88,13 @@ const ResourcesPage = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 Practical guidance for governance, compliance, and operational excellence 
-                in regulated industries.
+                in regulated industries. Free guides, templates, and articles.
               </motion.p>
             </div>
           </div>
         </section>
 
-        {/* Resources */}
+        {/* Featured Resources */}
         <SectionWrapper variant="default">
           <div className="text-center mb-16">
             <motion.h2 
@@ -94,7 +129,44 @@ const ResourcesPage = () => {
               </motion.div>
             ))}
           </div>
+        </SectionWrapper>
 
+        {/* Coming Soon */}
+        <SectionWrapper variant="soft-teal">
+          <div className="max-w-3xl mx-auto">
+            <motion.div
+              className="text-center mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="section-title">Coming Soon</h2>
+              <p className="section-subtitle">More resources in development</p>
+            </motion.div>
+
+            <motion.div
+              className="bg-white rounded-xl p-8 border border-neutral-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="grid sm:grid-cols-2 gap-4">
+                {upcomingResources.map((resource, index) => (
+                  <div key={index} className="flex items-center gap-3 text-neutral-700">
+                    <FileText className="w-5 h-5 text-brand-teal" />
+                    <span>{resource}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm text-neutral-500 mt-6 text-center">
+                Sign up below to be notified when new resources are available.
+              </p>
+            </motion.div>
+          </div>
+        </SectionWrapper>
+
+        {/* Newsletter */}
+        <SectionWrapper variant="default">
           <NewsletterSignupStrip />
         </SectionWrapper>
 

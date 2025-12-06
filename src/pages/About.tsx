@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FounderBioCard from "@/components/marketing/FounderBioCard";
 import PartnerOrgStrip from "@/components/marketing/PartnerOrgStrip";
-import ApproachTimeline from "@/components/marketing/ApproachTimeline";
 import PrimaryCTASection from "@/components/marketing/PrimaryCTASection";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import PageTransition from "@/components/PageTransition";
@@ -10,6 +9,7 @@ import useScrollToHash from "@/hooks/useScrollToHash";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Target, Users, Shield, Lightbulb, CheckCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const values = [
   {
@@ -34,41 +34,22 @@ const values = [
   }
 ];
 
-const principles = [
-  {
-    icon: Target,
-    title: "Practical Over Theoretical",
-    description: "We focus on what works in your specific environment, not generic frameworks."
-  },
-  {
-    icon: Users,
-    title: "Human-Centered Design",
-    description: "Governance only works if people follow it. We design for adoption."
-  },
-  {
-    icon: Lightbulb,
-    title: "Clarity Before Complexity",
-    description: "Simple, understandable structures that scale."
-  },
-  {
-    icon: CheckCircle,
-    title: "Sustainable Change",
-    description: "We help embed governance into daily operations for lasting impact."
-  }
-];
-
 const caseStudies = [
   {
     industry: "Healthcare",
+    type: "Multi-Physician Practice",
     challenge: "A multi-physician practice struggling with inconsistent patient intake processes and unclear staff responsibilities.",
     solution: "Mapped workflows, clarified roles with RACI, developed plain-language SOPs.",
-    outcome: "Reduced patient wait times, clear accountability, audit-ready documentation."
+    outcome: "Reduced patient wait times, clear accountability, audit-ready documentation.",
+    metrics: ["40% reduction in patient wait times", "100% role clarity across staff", "Audit-ready in 6 weeks"]
   },
   {
     industry: "Utilities",
+    type: "Regional Utility Provider",
     challenge: "A utility company facing an upcoming regulatory inspection with scattered documentation and undefined control ownership.",
     solution: "Conducted gap assessment, developed control catalog, established evidence management process.",
-    outcome: "Passed inspection with no major findings, established ongoing governance rhythm."
+    outcome: "Passed inspection with no major findings, established ongoing governance rhythm.",
+    metrics: ["Zero major audit findings", "30+ controls documented", "Sustainable governance model"]
   }
 ];
 
@@ -79,7 +60,7 @@ const AboutPage = () => {
     <PageTransition>
       <SEO 
         title="About Us"
-        description="Learn about Momentum Edge Consulting's mission to modernize governance for regulated organizations. Our practical, human-centered approach delivers sustainable governance structures."
+        description="Learn about Momentum Edge Consulting's mission to modernize governance for regulated organizations. Meet our leadership and see real client outcomes."
         canonical="/about"
       />
       <div className="min-h-screen bg-background">
@@ -141,7 +122,7 @@ const AboutPage = () => {
               Our Values
             </motion.h2>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-16">
+            <div className="grid md:grid-cols-2 gap-6">
               {values.map((value, index) => (
                 <motion.div
                   key={index}
@@ -164,8 +145,8 @@ const AboutPage = () => {
           </div>
         </SectionWrapper>
 
-        {/* Our Approach - 5 Step Process */}
-        <SectionWrapper id="approach" variant="soft-blue">
+        {/* Case Studies */}
+        <SectionWrapper variant="soft-blue">
           <div className="text-center mb-16">
             <motion.h2 
               className="section-title"
@@ -173,7 +154,7 @@ const AboutPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              Our Approach
+              Real Results for Real Organizations
             </motion.h2>
             <motion.p 
               className="section-subtitle"
@@ -182,43 +163,8 @@ const AboutPage = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              A practical, human-centered 5-step process
+              See how we've helped organizations like yours
             </motion.p>
-          </div>
-
-          <div className="max-w-5xl mx-auto mb-16">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-              {principles.map((principle, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white rounded-xl p-5 border border-neutral-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <principle.icon className="w-6 h-6 text-brand-teal mb-3" />
-                  <h4 className="font-semibold text-brand-navy text-sm mb-1">{principle.title}</h4>
-                  <p className="text-neutral-600 text-xs">{principle.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <ApproachTimeline />
-        </SectionWrapper>
-
-        {/* Case Studies */}
-        <SectionWrapper variant="default">
-          <div className="text-center mb-16">
-            <motion.h2 
-              className="section-title"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              How It Works in Practice
-            </motion.h2>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -232,7 +178,10 @@ const AboutPage = () => {
                 transition={{ delay: index * 0.1 }}
               >
                 <div className="bg-brand-soft-teal px-6 py-4 border-b border-neutral-300">
-                  <span className="tag">{study.industry}</span>
+                  <div className="flex items-center justify-between">
+                    <span className="tag">{study.industry}</span>
+                    <span className="text-sm text-neutral-600">{study.type}</span>
+                  </div>
                 </div>
                 <div className="p-6 space-y-4">
                   <div>
@@ -245,7 +194,15 @@ const AboutPage = () => {
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-neutral-500 uppercase mb-2">Outcome</h4>
-                    <p className="text-brand-teal font-medium">{study.outcome}</p>
+                    <p className="text-brand-teal font-medium mb-3">{study.outcome}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {study.metrics.map((metric, i) => (
+                        <span key={i} className="inline-flex items-center gap-1 text-xs bg-brand-soft-teal text-brand-navy px-3 py-1 rounded-full">
+                          <CheckCircle className="w-3 h-3 text-brand-teal" />
+                          {metric}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -254,7 +211,7 @@ const AboutPage = () => {
         </SectionWrapper>
 
         {/* Leadership */}
-        <SectionWrapper variant="soft-teal">
+        <SectionWrapper variant="default">
           <div className="max-w-4xl mx-auto">
             <motion.h2 
               className="section-title text-center mb-12"
@@ -270,7 +227,7 @@ const AboutPage = () => {
         </SectionWrapper>
 
         {/* Partners */}
-        <SectionWrapper variant="default">
+        <SectionWrapper variant="soft-teal">
           <div className="max-w-4xl mx-auto">
             <motion.h2 
               className="section-title text-center mb-12"
@@ -283,6 +240,26 @@ const AboutPage = () => {
 
             <PartnerOrgStrip />
           </div>
+        </SectionWrapper>
+
+        {/* Link to Approach */}
+        <SectionWrapper variant="default">
+          <motion.div
+            className="max-w-3xl mx-auto text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl lg:text-3xl font-bold text-brand-navy mb-4 font-heading">
+              Want to Know How We Work?
+            </h2>
+            <p className="text-neutral-700 mb-6">
+              Learn about our step-by-step engagement process and what to expect.
+            </p>
+            <Link to="/approach" className="cta-secondary inline-flex items-center gap-2">
+              View Our Approach →
+            </Link>
+          </motion.div>
         </SectionWrapper>
 
         <PrimaryCTASection 
