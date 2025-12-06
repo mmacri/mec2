@@ -17,16 +17,16 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="footer-bg py-20">
+    <footer className="bg-navy py-20">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-1">
             <h3 className="text-xl font-bold text-white mb-4">Momentum Edge Consulting</h3>
-            <p className="text-slate-400 leading-relaxed mb-6">
+            <p className="text-white/70 leading-relaxed mb-6">
               Clarity. Structure. Compliance. Confidence.
             </p>
-            <p className="text-slate-500 text-sm leading-relaxed">
+            <p className="text-white/50 text-sm leading-relaxed">
               Helping regulated organizations design policies, controls, and governance structures 
               for operational confidence.
             </p>
@@ -34,11 +34,11 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="footer-heading">Services</h4>
+            <h4 className="text-white font-semibold text-lg mb-4">Services</h4>
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index}>
-                  <Link to={service.path} className="footer-link">
+                  <Link to={service.path} className="text-white/60 hover:text-teal transition-colors text-sm">
                     {service.name}
                   </Link>
                 </li>
@@ -48,11 +48,11 @@ const Footer = () => {
 
           {/* Industries */}
           <div>
-            <h4 className="footer-heading">Who We Serve</h4>
+            <h4 className="text-white font-semibold text-lg mb-4">Who We Serve</h4>
             <ul className="space-y-3">
               {industries.map((industry, index) => (
                 <li key={index}>
-                  <Link to={industry.path} className="footer-link">
+                  <Link to={industry.path} className="text-white/60 hover:text-teal transition-colors text-sm">
                     {industry.name}
                   </Link>
                 </li>
@@ -62,24 +62,24 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="footer-heading">Company</h4>
+            <h4 className="text-white font-semibold text-lg mb-4">Company</h4>
             <ul className="space-y-3">
-              <li><Link to="/" className="footer-link">Home</Link></li>
-              <li><Link to="/about" className="footer-link">About</Link></li>
-              <li><Link to="/contact" className="footer-link">Contact</Link></li>
+              <li><Link to="/" className="text-white/60 hover:text-teal transition-colors text-sm">Home</Link></li>
+              <li><Link to="/about" className="text-white/60 hover:text-teal transition-colors text-sm">About</Link></li>
+              <li><Link to="/contact" className="text-white/60 hover:text-teal transition-colors text-sm">Contact</Link></li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-700/50 pt-8">
+        <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-slate-500 text-sm mb-4 md:mb-0">
+            <p className="text-white/50 text-sm mb-4 md:mb-0">
               © {currentYear} Momentum Edge Consulting. All rights reserved.
             </p>
             <a 
               href="mailto:momentumedgeconsulting@gmail.com"
-              className="text-slate-400 hover:text-teal-400 transition-colors text-sm"
+              className="text-white/60 hover:text-teal transition-colors text-sm"
             >
               momentumedgeconsulting@gmail.com
             </a>

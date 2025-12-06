@@ -16,28 +16,28 @@ const NotFound = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-background">
         <Header />
-        <div className="flex items-center justify-center bg-gray-50 py-20">
+        <div className="flex items-center justify-center bg-sand py-20">
           <div className="text-center max-w-md mx-auto px-6">
-            <h1 className="text-6xl font-bold text-slate-900 mb-4">404</h1>
-            <h2 className="text-2xl font-semibold text-slate-700 mb-4">Page Not Found</h2>
-            <p className="text-slate-600 mb-8">
+            <h1 className="text-6xl font-bold text-navy mb-4">404</h1>
+            <h2 className="text-2xl font-semibold text-navy mb-4">Page Not Found</h2>
+            <p className="text-slate mb-8">
               The page you're looking for doesn't exist or has been moved.
             </p>
             <div className="space-y-4">
               <Link 
                 to="/" 
-                className="bg-teal-500 hover:bg-teal-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg inline-block"
+                className="cta-primary inline-block"
               >
                 Return to Home
               </Link>
               <div>
-                <Link to="/services" className="text-teal-600 hover:text-teal-700 mx-2">Services</Link>
-                <span className="text-slate-400">|</span>
-                <Link to="/about" className="text-teal-600 hover:text-teal-700 mx-2">About</Link>
-                <span className="text-slate-400">|</span>
-                <Link to="/contact" className="text-teal-600 hover:text-teal-700 mx-2">Contact</Link>
+                <Link to="/services" className="text-teal hover:text-teal-dark mx-2">Services</Link>
+                <span className="text-slate/40">|</span>
+                <Link to="/about" className="text-teal hover:text-teal-dark mx-2">About</Link>
+                <span className="text-slate/40">|</span>
+                <Link to="/contact" className="text-teal hover:text-teal-dark mx-2">Contact</Link>
               </div>
             </div>
           </div>
