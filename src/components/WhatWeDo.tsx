@@ -32,7 +32,7 @@ const WhatWeDo = () => {
   ];
 
   return (
-    <section className="section-padding bg-slate-50">
+    <section className="section-padding bg-sand">
       <div className="container mx-auto px-6">
         <ScrollAnimation className="text-center mb-16">
           <h2 className="section-title">
@@ -54,15 +54,15 @@ const WhatWeDo = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <motion.div 
-                    className="icon-container bg-teal-50 group-hover:bg-teal-100 mb-6 transition-colors"
+                    className="icon-container bg-teal-light group-hover:bg-teal/20 mb-6 transition-colors"
                     whileHover={{ scale: 1.1, rotate: -5 }}
                   >
-                    <IconComponent className="w-7 h-7 text-teal-600" />
+                    <IconComponent className="w-7 h-7 text-teal-dark" />
                   </motion.div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-3 group-hover:text-teal-700 transition-colors">
+                  <h3 className="text-lg font-semibold text-navy mb-3 group-hover:text-teal transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">
+                  <p className="text-slate text-sm leading-relaxed">
                     {service.description}
                   </p>
                 </motion.div>
