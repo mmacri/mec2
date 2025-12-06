@@ -1,17 +1,19 @@
-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import About from "@/components/About";
+import PageTransition from "@/components/PageTransition";
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <div className="pt-20">
-        <About />
+    <PageTransition>
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="pt-8">
+          <About />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </PageTransition>
   );
 };
 
