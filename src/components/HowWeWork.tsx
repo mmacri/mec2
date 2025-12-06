@@ -3,43 +3,49 @@ import { Search, Layers, UserCheck, RefreshCw } from "lucide-react";
 const HowWeWork = () => {
   const steps = [
     {
-      number: "1",
+      number: "01",
       icon: Search,
       title: "Baseline & Discovery",
-      description: "We observe how your organization actually operates and identify the gaps that matter.",
-      color: "from-blue-500 to-blue-600"
+      description: "We observe how your organization actually operates and identify the gaps that matter."
     },
     {
-      number: "2",
+      number: "02",
       icon: Layers,
-      title: "Structure the Framework",
-      description: "Policies, controls, roles, processes, committees, evidence practices — built around your exact needs.",
-      color: "from-teal-500 to-teal-600"
+      title: "Structure & Design",
+      description: "Policies, controls, roles, processes, committees, evidence practices — built around your exact needs."
     },
     {
-      number: "3",
+      number: "03",
       icon: UserCheck,
       title: "Implement & Train",
-      description: "We work directly with staff to adopt new workflows and expectations.",
-      color: "from-purple-500 to-purple-600"
+      description: "We work directly with staff to adopt new workflows and expectations."
     },
     {
-      number: "4",
+      number: "04",
       icon: RefreshCw,
       title: "Sustain & Improve",
-      description: "Quarterly reviews, audit prep, evidence guidance, and ongoing advisory.",
-      color: "from-orange-500 to-orange-600"
+      description: "Quarterly reviews, audit prep, evidence guidance, and ongoing advisory."
     }
   ];
 
   return (
-    <section className="py-20 bg-slate-900 text-white">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-5xl font-bold text-white mb-8">
+    <section className="section-padding gradient-navy text-white relative overflow-hidden">
+      {/* Subtle pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <svg width="100%" height="100%">
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5"/>
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      </div>
+      
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-16 animate-fade-up">
+          <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
             How We Work
           </h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
             Our proven methodology ensures sustainable results and lasting operational clarity.
           </p>
         </div>
@@ -50,20 +56,27 @@ const HowWeWork = () => {
             return (
               <div 
                 key={index}
-                className="relative group"
+                className="relative animate-fade-up"
+                style={{ animationDelay: `${index * 0.15}s` }}
               >
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 h-full border border-white/20 hover:bg-white/15 transition-all duration-300 hover:-translate-y-2">
-                  <div className={`w-14 h-14 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent size={28} className="text-white" />
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 h-full">
+                  <div className="text-teal-400 text-sm font-bold tracking-widest mb-4">
+                    STEP {step.number}
                   </div>
-                  <div className="text-sm font-bold text-teal-400 mb-2">Step {step.number}</div>
-                  <h3 className="text-xl font-bold text-white mb-4">{step.title}</h3>
-                  <p className="text-gray-300 leading-relaxed">{step.description}</p>
+                  <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center mb-5">
+                    <IconComponent className="w-6 h-6 text-teal-400" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-slate-300 text-sm leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
                 
-                {/* Connector line for desktop */}
+                {/* Connector line */}
                 {index < 3 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-teal-500/50 to-transparent"></div>
+                  <div className="process-connector"></div>
                 )}
               </div>
             );

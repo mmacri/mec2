@@ -1,146 +1,138 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Hospital, Zap, Building2 } from "lucide-react";
+import { Hospital, Zap, Building2, ArrowRight } from "lucide-react";
 
 const Industries = () => {
   const industries = [
     {
       icon: Hospital,
       title: "Medical Practices",
+      subtitle: "Healthcare Groups & Dental Offices",
+      image: "linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)",
       painPoints: [
-        "Policies outdated",
-        "Roles unclear",
+        "Policies outdated or missing",
+        "Roles and responsibilities unclear",
         "Front office chaos",
-        "Audits and inspections coming",
+        "Audits and inspections looming",
         "Documentation weak"
       ],
       solutions: [
-        "Written policies",
-        "Clear workflows",
-        "Staffing clarity",
-        "Controls around patient data",
-        "Governance accountability"
+        "Written policies tailored to practice operations",
+        "Clear workflows and staff responsibilities",
+        "Controls around patient data and HIPAA",
+        "Governance accountability structures"
       ],
-      color: "text-red-500",
-      bgColor: "bg-red-50",
-      borderColor: "border-red-200"
+      cta: "Book a Practice Assessment"
     },
     {
       icon: Zap,
       title: "Utilities & Critical Infrastructure",
+      subtitle: "Power, Water & Essential Services",
+      image: "linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)",
       painPoints: [
         "Governance and controls inconsistent",
-        "Audit gaps",
+        "Audit gaps and findings",
         "Documentation not aligned with reality",
         "Operational ambiguity"
       ],
       solutions: [
-        "Governance frameworks",
-        "Control design",
-        "Evidence processes",
-        "Process documentation",
-        "Audit preparation"
+        "Governance frameworks for regulated utilities",
+        "Control design and evidence processes",
+        "Process documentation and training",
+        "Comprehensive audit preparation"
       ],
-      color: "text-amber-500",
-      bgColor: "bg-amber-50",
-      borderColor: "border-amber-200"
+      cta: "Request a Utility Governance Review"
     },
     {
       icon: Building2,
-      title: "Compliance-Driven Professional Firms",
+      title: "Compliance-Driven Firms",
+      subtitle: "Professional & Growing Organizations",
+      image: "linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)",
       painPoints: [
-        "No formal governance",
-        "Fast growth → chaos",
-        "Undefined roles",
-        "Client audits"
+        "No formal governance in place",
+        "Fast growth creating chaos",
+        "Undefined roles and responsibilities",
+        "Client audits raising concerns"
       ],
       solutions: [
-        "Responsibility modeling",
-        "Policies",
-        "Controls",
-        "Operational structure",
+        "Responsibility modeling and RACI",
+        "Policies and controls development",
+        "Operational structure design",
         "IT governance alignment"
       ],
-      color: "text-blue-500",
-      bgColor: "bg-blue-50",
-      borderColor: "border-blue-200"
+      cta: "Schedule a Consultation"
     }
   ];
 
   return (
-    <section id="industries" className="py-20 bg-gray-50">
+    <section className="section-padding bg-white">
       <div className="container mx-auto px-6">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-8 heading-enhanced">
-              Who We Serve
-            </h2>
-            <p className="text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
-              We work with organizations that must operate at a high standard — 
-              even without the headcount of large enterprises.
-            </p>
-          </div>
+        <div className="text-center mb-16 animate-fade-up">
+          <h2 className="section-title">Who We Serve</h2>
+          <p className="section-subtitle">
+            We work with organizations that must operate at a high standard — 
+            even without the headcount of large enterprises.
+          </p>
+        </div>
 
-          {/* Industries Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            {industries.map((industry, index) => {
-              const IconComponent = industry.icon;
-              return (
-                <Card key={index} className={`feature-card group h-full ${industry.bgColor} ${industry.borderColor}`}>
-                  <CardHeader className="pb-4 text-center">
-                    <div className={`${industry.color} mb-4 flex justify-center`}>
-                      <IconComponent size={56} className="group-hover:scale-110 transition-transform duration-300" />
+        <div className="space-y-12 max-w-5xl mx-auto">
+          {industries.map((industry, index) => {
+            const IconComponent = industry.icon;
+            return (
+              <div 
+                key={index}
+                className="rounded-3xl overflow-hidden border border-slate-200 hover:shadow-xl transition-all duration-300 animate-fade-up"
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-5">
+                  {/* Left - Visual */}
+                  <div 
+                    className="lg:col-span-2 p-10 flex flex-col justify-center items-center text-center"
+                    style={{ background: industry.image }}
+                  >
+                    <div className="w-20 h-20 rounded-2xl bg-white/80 backdrop-blur flex items-center justify-center mb-6 shadow-lg">
+                      <IconComponent className="w-10 h-10 text-slate-700" />
                     </div>
-                    <CardTitle className="text-xl text-slate-900 group-hover:text-teal-600 transition-colors duration-300 font-semibold">
-                      {industry.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-1">
-                    <div className="space-y-6">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">{industry.title}</h3>
+                    <p className="text-slate-600">{industry.subtitle}</p>
+                  </div>
+                  
+                  {/* Right - Content */}
+                  <div className="lg:col-span-3 p-10 bg-white">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                       <div>
-                        <h4 className="font-semibold text-slate-900 mb-3">Pain Points</h4>
+                        <h4 className="text-sm font-bold text-red-500 uppercase tracking-wide mb-4">Common Pain Points</h4>
                         <ul className="space-y-2">
                           {industry.painPoints.map((point, idx) => (
-                            <li key={idx} className="flex items-start">
-                              <span className="text-red-500 mr-2 mt-1 font-bold text-sm">•</span>
-                              <span className="text-sm text-gray-700 leading-relaxed">{point}</span>
+                            <li key={idx} className="flex items-start text-sm text-slate-600">
+                              <span className="text-red-400 mr-2">•</span>
+                              {point}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-slate-900 mb-3">What We Solve</h4>
+                        <h4 className="text-sm font-bold text-teal-600 uppercase tracking-wide mb-4">What We Solve</h4>
                         <ul className="space-y-2">
                           {industry.solutions.map((solution, idx) => (
-                            <li key={idx} className="flex items-start">
-                              <span className="text-teal-500 mr-2 mt-1 font-bold text-sm">✓</span>
-                              <span className="text-sm text-gray-700 leading-relaxed">{solution}</span>
+                            <li key={idx} className="flex items-start text-sm text-slate-700">
+                              <span className="text-teal-500 mr-2">✓</span>
+                              {solution}
                             </li>
                           ))}
                         </ul>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-
-          {/* Call to Action */}
-          <div className="text-center">
-            <div className="bg-slate-900 rounded-xl p-8 max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold text-white mb-4">Ready to Bring Structure to Your Organization?</h3>
-              <p className="text-gray-300 mb-6 leading-relaxed">
-                Request an assessment tailored to your industry's unique challenges and regulatory requirements.
-              </p>
-              <a 
-                href="mailto:momentumedgeconsulting@gmail.com?subject=Industry-Specific Assessment Request&body=Hello, I would like to request an assessment tailored to my industry's needs."
-                className="bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold text-lg px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg inline-flex items-center justify-center"
-              >
-                Request an Industry Assessment
-              </a>
-            </div>
-          </div>
+                    <a 
+                      href="mailto:momentumedgeconsulting@gmail.com?subject=Industry Assessment Request"
+                      className="inline-flex items-center text-teal-600 font-medium hover:text-teal-700 transition-colors"
+                    >
+                      {industry.cta}
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

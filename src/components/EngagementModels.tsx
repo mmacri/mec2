@@ -1,65 +1,58 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Zap, FileText, Calendar } from "lucide-react";
+import { Zap, FileText, Calendar, ArrowRight } from "lucide-react";
 
 const EngagementModels = () => {
   const models = [
     {
       icon: Zap,
-      title: "Compliance & Governance Assessment (QuickScan)",
-      duration: "2–3 week engagement",
-      description: "Perfect for small medical practices and growing firms.",
+      title: "Governance & Compliance Assessment",
+      subtitle: "QuickScan",
+      duration: "2–3 weeks",
+      description: "Perfect for small medical practices and growing firms that need a clear starting point.",
       deliverables: [
         "Baseline review",
         "Gap analysis",
         "Prioritized roadmap",
         "Summary report"
       ],
-      color: "text-amber-500",
-      bgColor: "bg-amber-50",
-      borderColor: "border-amber-300"
+      highlight: false
     },
     {
       icon: FileText,
       title: "Policy & Control Design Project",
-      duration: "6–12 week engagement",
-      description: "Comprehensive policy and governance framework development.",
+      subtitle: "Comprehensive",
+      duration: "6–12 weeks",
+      description: "Full governance framework development for organizations ready to formalize operations.",
       deliverables: [
-        "Policies",
-        "Controls",
+        "Complete policies",
+        "Control catalog",
         "Governance workflows",
         "RACI charts",
         "Process documentation"
       ],
-      color: "text-teal-500",
-      bgColor: "bg-teal-50",
-      borderColor: "border-teal-300"
+      highlight: true
     },
     {
       icon: Calendar,
-      title: "Ongoing Advisory (Fractional Governance Leadership)",
-      duration: "Monthly engagement",
-      description: "Continuous governance support and improvement.",
+      title: "Ongoing Advisory",
+      subtitle: "Fractional Leadership",
+      duration: "Monthly",
+      description: "Continuous governance support for organizations that need sustained improvement.",
       deliverables: [
         "Regular review sessions",
         "Governance oversight",
         "Staff training",
-        "Governance meeting facilitation",
         "Continuous improvement"
       ],
-      color: "text-purple-500",
-      bgColor: "bg-purple-50",
-      borderColor: "border-purple-300"
+      highlight: false
     }
   ];
 
   return (
-    <section id="engagement-models" className="py-20 bg-white">
+    <section className="section-padding bg-slate-50">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-8 heading-enhanced">
-            Engagement Models
-          </h2>
-          <p className="text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
+        <div className="text-center mb-16 animate-fade-up">
+          <h2 className="section-title">Engagement Models</h2>
+          <p className="section-subtitle">
             Flexible engagement options designed to meet your organization where it is today.
           </p>
         </div>
@@ -68,49 +61,78 @@ const EngagementModels = () => {
           {models.map((model, index) => {
             const IconComponent = model.icon;
             return (
-              <Card 
-                key={index} 
-                className={`feature-card group h-full border-2 ${model.borderColor} hover:shadow-2xl`}
+              <div 
+                key={index}
+                className={`relative rounded-2xl p-8 transition-all duration-300 animate-fade-up ${
+                  model.highlight 
+                    ? 'bg-slate-900 text-white shadow-2xl scale-105' 
+                    : 'bg-white border border-slate-200 hover:shadow-xl hover:border-teal-200'
+                }`}
+                style={{ animationDelay: `${index * 0.15}s` }}
               >
-                <CardHeader className="text-center pb-4">
-                  <div className={`${model.bgColor} ${model.color} mb-4 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent size={40} />
+                {model.highlight && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <span className="bg-teal-500 text-white text-xs font-bold px-4 py-1 rounded-full">
+                      MOST POPULAR
+                    </span>
                   </div>
-                  <CardTitle className="text-xl text-slate-900 font-semibold group-hover:text-teal-600 transition-colors duration-300">
-                    {model.title}
-                  </CardTitle>
-                  <div className={`inline-block ${model.bgColor} ${model.color} px-4 py-1 rounded-full text-sm font-semibold mt-2`}>
-                    {model.duration}
+                )}
+                
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${
+                  model.highlight ? 'bg-teal-500/20' : 'bg-teal-50'
+                }`}>
+                  <IconComponent className={`w-7 h-7 ${model.highlight ? 'text-teal-400' : 'text-teal-600'}`} />
+                </div>
+                
+                <div className="mb-2">
+                  <span className={`text-xs font-bold uppercase tracking-wider ${
+                    model.highlight ? 'text-teal-400' : 'text-teal-600'
+                  }`}>
+                    {model.subtitle}
+                  </span>
+                </div>
+                
+                <h3 className={`text-xl font-bold mb-2 ${model.highlight ? 'text-white' : 'text-slate-900'}`}>
+                  {model.title}
+                </h3>
+                
+                <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium mb-4 ${
+                  model.highlight ? 'bg-white/10 text-white' : 'bg-slate-100 text-slate-600'
+                }`}>
+                  {model.duration}
+                </div>
+                
+                <p className={`mb-6 ${model.highlight ? 'text-slate-300' : 'text-slate-600'}`}>
+                  {model.description}
+                </p>
+                
+                <div>
+                  <div className={`text-sm font-semibold uppercase tracking-wide mb-3 ${
+                    model.highlight ? 'text-white' : 'text-slate-900'
+                  }`}>
+                    Includes:
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-700 font-medium leading-relaxed text-center mb-6">
-                    {model.description}
-                  </CardDescription>
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-3 text-center">Includes:</h4>
-                    <ul className="space-y-2">
-                      {model.deliverables.map((deliverable, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <span className="text-teal-500 mr-3 mt-1 font-bold">✓</span>
-                          <span className="text-gray-600 font-medium">{deliverable}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
+                  <ul className="space-y-2">
+                    {model.deliverables.map((item, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <span className={`mr-2 ${model.highlight ? 'text-teal-400' : 'text-teal-500'}`}>✓</span>
+                        <span className={model.highlight ? 'text-slate-300' : 'text-slate-600'}>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             );
           })}
         </div>
 
-        <div className="text-center mt-16">
+        <div className="text-center mt-16 animate-fade-up">
           <a 
-            href="mailto:momentumedgeconsulting@gmail.com?subject=Engagement Discussion&body=Hello, I would like to discuss which engagement model would be best for my organization."
-            className="bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold text-lg px-10 py-5 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg inline-flex items-center justify-center"
-            style={{ boxShadow: '0 8px 24px rgba(20, 184, 166, 0.4)' }}
+            href="mailto:momentumedgeconsulting@gmail.com?subject=Engagement Discussion"
+            className="cta-primary group"
           >
             Discuss the Right Engagement for You
+            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
           </a>
         </div>
       </div>

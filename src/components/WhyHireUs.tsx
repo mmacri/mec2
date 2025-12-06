@@ -1,43 +1,72 @@
+import { FileText, GitBranch, Shield } from "lucide-react";
+
 const WhyHireUs = () => {
-  const painPoints = [
-    "Roles are unclear",
-    "Processes are inconsistent",
-    "Policies are outdated or hard to follow",
-    "Controls are incomplete or not mapped to real risks",
-    "Governance structures exist \"in name only\"",
-    "Required documentation doesn't reflect reality",
-    "Teams rely on tribal knowledge instead of defined workflows"
+  const pillars = [
+    {
+      icon: FileText,
+      title: "Policies & Controls",
+      description: "Clear, practical policies that people understand and auditors trust."
+    },
+    {
+      icon: GitBranch,
+      title: "Processes",
+      description: "Defined workflows and responsibilities that eliminate ambiguity."
+    },
+    {
+      icon: Shield,
+      title: "Governance",
+      description: "Structures and oversight that ensure accountability and compliance."
+    }
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="section-padding bg-white">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-8 heading-enhanced">
-            Why Organizations Hire Us
-          </h2>
-          <p className="text-lg lg:text-xl text-gray-700 mb-10 leading-relaxed font-medium">
-            Organizations rarely struggle because of a lack of effort — they struggle because:
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12 text-left">
-            {painPoints.map((point, index) => (
-              <div 
-                key={index}
-                className="flex items-start bg-red-50 border border-red-100 p-4 rounded-lg"
-              >
-                <span className="text-red-500 mr-3 mt-0.5 font-bold">•</span>
-                <span className="text-gray-700 font-medium">{point}</span>
-              </div>
-            ))}
+        <div className="max-w-5xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16 animate-fade-up">
+            <h2 className="section-title">
+              Why Organizations Hire Us
+            </h2>
+            <p className="section-subtitle">
+              Organizations don't fail audits because they're careless — they fail because their 
+              policies, processes, and responsibilities aren't clearly defined or consistently followed.
+            </p>
           </div>
           
-          <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-8 border border-teal-200">
-            <p className="text-xl lg:text-2xl text-teal-800 font-semibold">
-              We help clients move from <span className="text-red-600">chaos</span> → <span className="text-teal-600">clarity</span>, 
-              <span className="text-red-600"> ambiguity</span> → <span className="text-teal-600">structure</span>, 
-              and <span className="text-red-600"> risk</span> → <span className="text-teal-600">confidence</span>.
-            </p>
+          {/* Three pillars */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {pillars.map((pillar, index) => {
+              const IconComponent = pillar.icon;
+              return (
+                <div 
+                  key={index}
+                  className="card-professional text-center animate-fade-up"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="icon-container bg-teal-50 mx-auto mb-6">
+                    <IconComponent className="w-8 h-8 text-teal-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-slate-600">
+                    {pillar.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+          
+          {/* Bottom statement */}
+          <div className="text-center animate-fade-up animate-fade-up-delay-3">
+            <div className="inline-block bg-gradient-to-r from-slate-50 to-teal-50 rounded-2xl p-8 border border-teal-100">
+              <p className="text-xl text-slate-700 font-medium">
+                Momentum Edge specializes in bringing <span className="text-slate-900 font-semibold">order</span>, 
+                <span className="text-slate-900 font-semibold"> clarity</span>, and 
+                <span className="text-slate-900 font-semibold"> structure</span> to environments where ambiguity creates risk.
+              </p>
+            </div>
           </div>
         </div>
       </div>
