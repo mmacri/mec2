@@ -18,7 +18,7 @@ const industries = [
 
 const whatHappensNext = [
   "We'll review your submission within 1 business day",
-  "Schedule a 30-minute discovery call at your convenience",
+  "Schedule a focused conversation at your convenience",
   "Provide initial recommendations tailored to your situation",
   "Outline potential next steps with no obligation"
 ];
@@ -27,6 +27,7 @@ const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    role: "",
     organization: "",
     industry: "",
     description: ""
@@ -39,10 +40,11 @@ const ContactPage = () => {
     const subject = encodeURIComponent(`Contact from ${formData.name} - ${formData.organization}`);
     const body = encodeURIComponent(
       `Name: ${formData.name}\n` +
+      `Role: ${formData.role}\n` +
       `Organization: ${formData.organization}\n` +
       `Email: ${formData.email}\n` +
       `Industry: ${formData.industry}\n\n` +
-      `Description of Need:\n${formData.description}`
+      `What support you need:\n${formData.description}`
     );
     
     window.location.href = `mailto:momentumedgeconsulting@gmail.com?subject=${subject}&body=${body}`;
@@ -64,7 +66,7 @@ const ContactPage = () => {
     <PageTransition>
       <SEO 
         title="Contact Us"
-        description="Get in touch with Momentum Edge Consulting. Schedule a discovery call to discuss your governance challenges and how we can help."
+        description="Get in touch with Momentum Edge Consulting. Let's talk about what your organization needs."
         canonical="/contact"
       />
       <div className="min-h-screen bg-background">
@@ -82,7 +84,7 @@ const ContactPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                Let's Build a Clear, Sustainable Governance Model
+                Let's talk about what your organization needs
               </motion.h1>
               
               <motion.p
@@ -112,7 +114,7 @@ const ContactPage = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-brand-navy mb-2">
-                        Your Name *
+                        Name *
                       </label>
                       <input
                         type="text"
@@ -128,7 +130,7 @@ const ContactPage = () => {
                     
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-brand-navy mb-2">
-                        Email Address *
+                        Email *
                       </label>
                       <input
                         type="email"
@@ -145,6 +147,22 @@ const ContactPage = () => {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
+                      <label htmlFor="role" className="block text-sm font-medium text-brand-navy mb-2">
+                        Role *
+                      </label>
+                      <input
+                        type="text"
+                        id="role"
+                        name="role"
+                        required
+                        value={formData.role}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-brand-teal focus:border-transparent"
+                        placeholder="Practice Manager"
+                      />
+                    </div>
+                    
+                    <div>
                       <label htmlFor="organization" className="block text-sm font-medium text-brand-navy mb-2">
                         Organization *
                       </label>
@@ -159,30 +177,30 @@ const ContactPage = () => {
                         placeholder="Acme Healthcare"
                       />
                     </div>
-                    
-                    <div>
-                      <label htmlFor="industry" className="block text-sm font-medium text-brand-navy mb-2">
-                        Industry *
-                      </label>
-                      <select
-                        id="industry"
-                        name="industry"
-                        required
-                        value={formData.industry}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-brand-teal focus:border-transparent bg-white"
-                      >
-                        <option value="">Select your industry</option>
-                        {industries.map((industry) => (
-                          <option key={industry} value={industry}>{industry}</option>
-                        ))}
-                      </select>
-                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="industry" className="block text-sm font-medium text-brand-navy mb-2">
+                      Industry *
+                    </label>
+                    <select
+                      id="industry"
+                      name="industry"
+                      required
+                      value={formData.industry}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-brand-teal focus:border-transparent bg-white"
+                    >
+                      <option value="">Select your industry</option>
+                      {industries.map((industry) => (
+                        <option key={industry} value={industry}>{industry}</option>
+                      ))}
+                    </select>
                   </div>
 
                   <div>
                     <label htmlFor="description" className="block text-sm font-medium text-brand-navy mb-2">
-                      Description of Your Governance Needs *
+                      What support do you need? *
                     </label>
                     <textarea
                       id="description"
@@ -192,7 +210,7 @@ const ContactPage = () => {
                       value={formData.description}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-brand-teal focus:border-transparent resize-none"
-                      placeholder="Tell us about your current challenges, upcoming audits, or governance goals..."
+                      placeholder="Tell us about your current challenges, goals, or what support you're looking for..."
                     />
                   </div>
 

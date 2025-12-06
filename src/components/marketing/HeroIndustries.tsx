@@ -13,7 +13,7 @@ const HeroIndustries = () => {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6 font-heading">
-              We Serve Organizations That Can't Afford Compliance Failures
+              Support for teams that rely on structure, clarity, and reliable operations
             </h1>
           </motion.div>
           
@@ -23,8 +23,8 @@ const HeroIndustries = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Practical, structured support for doctor's offices, utilities, 
-            and compliance-focused firms.
+            Explore how we help medical practices, utilities, and compliance-heavy 
+            organizations improve processes, governance, and operational consistency.
           </motion.p>
         </div>
       </div>
