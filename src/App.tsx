@@ -59,8 +59,8 @@ const AnimatedRoutes = () => {
 };
 
 const App = () => {
-  const isGitHubPages = window.location.hostname === 'mikemacri.github.io';
-  const basename = isGitHubPages ? "/momentum-edge-blueprint" : undefined;
+  const isGitHubPages = window.location.hostname === 'mmacri.github.io';
+  const basename = isGitHubPages ? "/mec2" : undefined;
   
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={(error) => console.error("Error boundary caught:", error)}>
