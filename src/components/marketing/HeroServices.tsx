@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 
 const HeroServices = () => {
   return (
@@ -14,12 +13,12 @@ const HeroServices = () => {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6 font-heading">
-              Services Built for Real-World Operations
+              Services designed around operational clarity and sustainable structure
             </h1>
           </motion.div>
           
           <motion.p
-            className="text-lg lg:text-xl text-neutral-700 leading-relaxed mb-8"
+            className="text-lg lg:text-xl text-neutral-700 leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -27,26 +26,6 @@ const HeroServices = () => {
             Governance, policies, and controls designed for how your organization 
             actually works — not how a template says it should.
           </motion.p>
-
-          <motion.div
-            className="flex flex-wrap justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Link
-              to="/services#policy"
-              className="px-5 py-2.5 bg-brand-navy text-white rounded-lg font-medium hover:bg-brand-navy/90 transition-colors"
-            >
-              Governance Services
-            </Link>
-            <Link
-              to="/services#technology"
-              className="px-5 py-2.5 bg-brand-teal/10 text-brand-teal border border-brand-teal/30 rounded-lg font-medium hover:bg-brand-teal/20 transition-colors"
-            >
-              Technology Advisory
-            </Link>
-          </motion.div>
         </div>
       </div>
     </section>
