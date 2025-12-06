@@ -5,6 +5,7 @@ import PrimaryCTASection from "@/components/marketing/PrimaryCTASection";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import PageTransition from "@/components/PageTransition";
 import useScrollToHash from "@/hooks/useScrollToHash";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { FileText, Shield, Users, ClipboardCheck, Monitor, CheckCircle, Cloud, Server, Settings, Briefcase } from "lucide-react";
 import { useEffect } from "react";
@@ -178,6 +179,11 @@ const ServicesPage = () => {
 
   return (
     <PageTransition>
+      <SEO 
+        title="Services"
+        description="Governance consulting services including policy development, compliance readiness, IT governance, and technology advisory. Practical solutions for regulated organizations."
+        canonical="/services"
+      />
       <div className="min-h-screen bg-background">
         <Header />
         

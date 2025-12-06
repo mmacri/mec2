@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import PageTransition from "@/components/PageTransition";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Mail, Clock, CheckCircle, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -61,6 +62,11 @@ const ContactPage = () => {
 
   return (
     <PageTransition>
+      <SEO 
+        title="Contact Us"
+        description="Get in touch with Momentum Edge Consulting. Schedule a discovery call to discuss your governance challenges and how we can help."
+        canonical="/contact"
+      />
       <div className="min-h-screen bg-background">
         <Header />
         
