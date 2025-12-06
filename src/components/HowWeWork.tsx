@@ -1,4 +1,6 @@
 import { Search, Layers, UserCheck, RefreshCw } from "lucide-react";
+import { motion } from "framer-motion";
+import { ScrollAnimation, StaggerContainer, StaggerItem } from "./ScrollAnimation";
 
 const HowWeWork = () => {
   const steps = [
@@ -30,58 +32,77 @@ const HowWeWork = () => {
 
   return (
     <section className="section-padding gradient-navy text-white relative overflow-hidden">
-      {/* Subtle pattern */}
-      <div className="absolute inset-0 opacity-5">
+      {/* Animated background pattern */}
+      <motion.div 
+        className="absolute inset-0 opacity-5"
+        animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+        transition={{ duration: 30, repeat: Infinity, repeatType: "reverse" }}
+      >
         <svg width="100%" height="100%">
           <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
             <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5"/>
           </pattern>
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
-      </div>
+      </motion.div>
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16 animate-fade-up">
+        <ScrollAnimation className="text-center mb-16">
           <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
             How We Work
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
             Our proven methodology ensures sustainable results and lasting operational clarity.
           </p>
-        </div>
+        </ScrollAnimation>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto" staggerDelay={0.12}>
           {steps.map((step, index) => {
             const IconComponent = step.icon;
             return (
-              <div 
-                key={index}
-                className="relative animate-fade-up"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 h-full">
-                  <div className="text-teal-400 text-sm font-bold tracking-widest mb-4">
-                    STEP {step.number}
+              <StaggerItem key={index}>
+                <motion.div 
+                  className="relative h-full"
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-300 h-full">
+                    <motion.div 
+                      className="text-teal-400 text-sm font-bold tracking-widest mb-4"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.3 + index * 0.1 }}
+                    >
+                      STEP {step.number}
+                    </motion.div>
+                    <motion.div 
+                      className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center mb-5"
+                      whileHover={{ scale: 1.1, rotate: 10 }}
+                    >
+                      <IconComponent className="w-6 h-6 text-teal-400" />
+                    </motion.div>
+                    <h3 className="text-xl font-semibold text-white mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      {step.description}
+                    </p>
                   </div>
-                  <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center mb-5">
-                    <IconComponent className="w-6 h-6 text-teal-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-slate-300 text-sm leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-                
-                {/* Connector line */}
-                {index < 3 && (
-                  <div className="process-connector"></div>
-                )}
-              </div>
+                  
+                  {/* Connector line */}
+                  {index < 3 && (
+                    <motion.div 
+                      className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-teal-500/50 to-transparent"
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      transition={{ delay: 0.5 + index * 0.15, duration: 0.4 }}
+                    />
+                  )}
+                </motion.div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
