@@ -4,10 +4,10 @@ import { ScrollAnimation } from "./ScrollAnimation";
 
 const HomeCTA = () => {
   return (
-    <section className="section-padding bg-gradient-to-br from-slate-50 via-teal-50/30 to-white relative overflow-hidden">
+    <section className="section-padding bg-gradient-to-br from-sand via-teal-light/30 to-background relative overflow-hidden">
       {/* Animated abstract shapes */}
       <motion.div 
-        className="absolute top-0 right-0 w-72 h-72 bg-teal-100 rounded-full opacity-30 blur-3xl"
+        className="absolute top-0 right-0 w-72 h-72 bg-teal/20 rounded-full opacity-30 blur-3xl"
         animate={{ 
           scale: [1, 1.2, 1],
           x: [0, 20, 0],
@@ -16,7 +16,7 @@ const HomeCTA = () => {
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div 
-        className="absolute bottom-0 left-0 w-96 h-96 bg-slate-100 rounded-full opacity-50 blur-3xl"
+        className="absolute bottom-0 left-0 w-96 h-96 bg-sand rounded-full opacity-50 blur-3xl"
         animate={{ 
           scale: [1, 1.1, 1],
           x: [0, -20, 0],
@@ -27,10 +27,10 @@ const HomeCTA = () => {
       
       <div className="container mx-auto px-6 relative z-10">
         <ScrollAnimation variant="scale" className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-6">
+          <h2 className="text-3xl lg:text-5xl font-bold text-navy mb-6">
             Ready to Bring Clarity and Confidence to Your Organization?
           </h2>
-          <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-slate mb-10 max-w-2xl mx-auto">
             Every regulated organization can operate with confidence. Let's discuss how we can help you achieve operational clarity.
           </p>
           
