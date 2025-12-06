@@ -6,6 +6,7 @@ import ApproachTimeline from "@/components/marketing/ApproachTimeline";
 import PrimaryCTASection from "@/components/marketing/PrimaryCTASection";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import PageTransition from "@/components/PageTransition";
+import useScrollToHash from "@/hooks/useScrollToHash";
 import { motion } from "framer-motion";
 import { Target, Users, Shield, Lightbulb, CheckCircle } from "lucide-react";
 
@@ -71,6 +72,8 @@ const caseStudies = [
 ];
 
 const AboutPage = () => {
+  useScrollToHash();
+  
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">

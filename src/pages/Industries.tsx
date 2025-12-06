@@ -5,6 +5,7 @@ import ProblemSolutionSection from "@/components/marketing/ProblemSolutionSectio
 import PrimaryCTASection from "@/components/marketing/PrimaryCTASection";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import PageTransition from "@/components/PageTransition";
+import useScrollToHash from "@/hooks/useScrollToHash";
 import { motion } from "framer-motion";
 import { Stethoscope, Zap, Building } from "lucide-react";
 
@@ -51,6 +52,8 @@ const complianceSolutions = [
 ];
 
 const IndustriesPage = () => {
+  useScrollToHash();
+  
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">

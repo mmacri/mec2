@@ -4,6 +4,7 @@ import HeroServices from "@/components/marketing/HeroServices";
 import PrimaryCTASection from "@/components/marketing/PrimaryCTASection";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import PageTransition from "@/components/PageTransition";
+import useScrollToHash from "@/hooks/useScrollToHash";
 import { motion } from "framer-motion";
 import { FileText, Shield, Users, ClipboardCheck, Monitor, CheckCircle } from "lucide-react";
 import { useEffect } from "react";
@@ -121,6 +122,7 @@ const faqData = [
 ];
 
 const ServicesPage = () => {
+  useScrollToHash();
   useEffect(() => {
     const script = document.createElement('script');
     script.type = 'application/ld+json';
