@@ -3,104 +3,105 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import Google Fonts for professional typography */
+/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
-/* Momentum Edge Consulting Brand Design System */
-/* Deep Governance Navy + Structured Slate + Compliance Teal */
+/* Momentum Edge Consulting - Strict Design System */
 
 @layer base {
   :root {
-    /* Core Brand Colors (HSL format) */
-    --background: 0 0% 100%; /* Precision White #FFFFFF */
-    --foreground: 210 53% 11%; /* Deep Governance Navy #0D1B2A */
+    /* Brand Colors - Exact Hex Values */
+    --brand-navy: 213 70% 14%; /* #0B1F3B */
+    --brand-navy-dark: 213 70% 10%; /* darker navy for hover */
+    --brand-teal: 173 73% 28%; /* #137C73 */
+    --brand-teal-dark: 173 73% 22%; /* darker teal for hover */
+    --brand-gold: 36 91% 55%; /* #F5A623 */
+    --brand-soft-blue: 216 100% 95%; /* #E7F0FF */
+    --brand-soft-teal: 165 52% 93%; /* #E5F6F3 */
+
+    /* Neutral Palette */
+    --neutral-900: 220 39% 11%; /* #111827 */
+    --neutral-700: 217 19% 27%; /* #374151 */
+    --neutral-500: 220 9% 46%; /* #6B7280 */
+    --neutral-300: 216 12% 84%; /* #D1D5DB */
+    --neutral-100: 220 14% 96%; /* #F3F4F6 */
+    --neutral-50: 210 20% 98%; /* #F9FAFB */
+
+    /* Shadcn Semantic Tokens */
+    --background: 0 0% 100%;
+    --foreground: 220 39% 11%; /* neutral-900 */
 
     --card: 0 0% 100%;
-    --card-foreground: 210 53% 11%;
+    --card-foreground: 220 39% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 53% 11%;
+    --popover-foreground: 220 39% 11%;
 
-    /* Compliance Teal - Primary Accent */
-    --primary: 178 50% 46%; /* #3AAFA9 */
+    --primary: 213 70% 14%; /* brand-navy */
     --primary-foreground: 0 0% 100%;
 
-    /* Operational Sand/Linen - Secondary Background */
-    --secondary: 36 25% 96%; /* #F7F5F2 */
-    --secondary-foreground: 210 53% 11%;
+    --secondary: 165 52% 93%; /* brand-soft-teal */
+    --secondary-foreground: 213 70% 14%;
 
-    /* Clarity Light Teal */
-    --muted: 176 47% 91%; /* #DEF2F1 */
-    --muted-foreground: 206 20% 36%; /* Structured Slate #2E3A45 */
+    --muted: 220 14% 96%; /* neutral-100 */
+    --muted-foreground: 220 9% 46%; /* neutral-500 */
 
-    --accent: 178 50% 46%; /* Compliance Teal */
+    --accent: 173 73% 28%; /* brand-teal */
     --accent-foreground: 0 0% 100%;
 
-    /* Brand Color Tokens */
-    --navy: 210 53% 11%; /* Deep Governance Navy #0D1B2A */
-    --navy-dark: 212 56% 7%; /* AAA Compliance Navy #07121E */
-    --navy-light: 213 38% 16%; /* Softer Navy #1B263B */
-    
-    --slate: 206 20% 23%; /* Structured Slate Gray #2E3A45 */
-    --slate-light: 207 16% 28%; /* Slate Variant #394652 */
-    --slate-muted: 215 14% 34%; /* #475569 */
-    
-    --teal: 178 50% 46%; /* Compliance Teal #3AAFA9 */
-    --teal-light: 176 47% 91%; /* Clarity Light Teal #DEF2F1 */
-    --teal-dark: 179 51% 38%; /* Hover Teal #2F918E */
-    
-    --sand: 36 25% 96%; /* Operational Sand #F7F5F2 */
-
-    /* Utility Colors */
-    --success: 122 39% 49%; /* Success Green #4CAF50 */
-    --warning: 40 100% 48%; /* Warning Gold #F2A100 */
-    --destructive: 3 62% 58%; /* Compliance Red #D9534F */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 178 50% 46%; /* Compliance Teal */
+    --border: 216 12% 84%; /* neutral-300 */
+    --input: 216 12% 84%;
+    --ring: 173 73% 28%; /* brand-teal */
 
     --radius: 0.5rem;
 
-    --sidebar-background: 36 25% 96%;
-    --sidebar-foreground: 210 53% 11%;
-    --sidebar-primary: 178 50% 46%;
+    /* Legacy tokens for compatibility */
+    --navy: 213 70% 14%;
+    --navy-dark: 213 70% 10%;
+    --navy-light: 213 50% 20%;
+    --teal: 173 73% 28%;
+    --teal-dark: 173 73% 22%;
+    --teal-light: 165 52% 93%;
+    --slate: 217 19% 27%;
+    --slate-light: 220 9% 46%;
+    --slate-muted: 220 9% 46%;
+    --sand: 210 20% 98%;
+    --success: 142 71% 45%;
+    --warning: 36 91% 55%;
+
+    --sidebar-background: 210 20% 98%;
+    --sidebar-foreground: 220 39% 11%;
+    --sidebar-primary: 173 73% 28%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 176 47% 91%;
-    --sidebar-accent-foreground: 210 53% 11%;
-    --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 178 50% 46%;
+    --sidebar-accent: 165 52% 93%;
+    --sidebar-accent-foreground: 220 39% 11%;
+    --sidebar-border: 216 12% 84%;
+    --sidebar-ring: 173 73% 28%;
   }
 
   .dark {
-    --background: 210 53% 11%;
-    --foreground: 210 40% 98%;
-
-    --card: 213 38% 16%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 213 38% 16%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 178 50% 46%;
+    --background: 220 39% 11%;
+    --foreground: 210 20% 98%;
+    --card: 213 70% 14%;
+    --card-foreground: 210 20% 98%;
+    --popover: 213 70% 14%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 173 73% 28%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 215 28% 17%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 215 28% 17%;
-    --muted-foreground: 215 20% 65%;
-
-    --accent: 178 50% 46%;
+    --secondary: 217 19% 27%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 217 19% 27%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 173 73% 28%;
     --accent-foreground: 0 0% 100%;
-
-    --destructive: 3 62% 58%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 215 28% 17%;
-    --input: 215 28% 17%;
-    --ring: 178 50% 46%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 19% 27%;
+    --input: 217 19% 27%;
+    --ring: 173 73% 28%;
   }
 }
 
@@ -114,35 +115,40 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.7;
     font-size: 16px;
-    color: hsl(var(--slate));
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', Georgia, serif;
     line-height: 1.2;
     font-weight: 600;
-    color: hsl(var(--navy));
+    color: hsl(var(--brand-navy));
     letter-spacing: -0.02em;
   }
 
-  h1 { font-size: 3.5rem; font-weight: 700; }
+  h1 { font-size: 3.25rem; font-weight: 700; }
   h2 { font-size: 2.5rem; font-weight: 600; }
   h3 { font-size: 1.75rem; font-weight: 600; }
   h4 { font-size: 1.25rem; font-weight: 600; }
 
   p {
     line-height: 1.8;
-    color: hsl(var(--slate));
+    color: hsl(var(--neutral-700));
   }
 
   a {
-    color: hsl(var(--teal));
+    color: hsl(var(--brand-teal));
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
   a:hover {
-    color: hsl(var(--teal-dark));
+    color: hsl(var(--brand-teal-dark));
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 2.25rem; }
+    h2 { font-size: 1.875rem; }
+    h3 { font-size: 1.5rem; }
   }
 }
 
@@ -178,179 +184,163 @@
     animation: float 6s ease-in-out infinite;
   }
 
-  /* Card styles */
-  .card-professional {
-    @apply bg-white rounded-2xl p-8 shadow-sm border border-border transition-all duration-300;
+  /* Hero Backgrounds - Strict Color Rules */
+  .hero-home {
+    background-color: hsl(var(--brand-soft-blue));
   }
 
-  .card-professional:hover {
-    @apply shadow-xl -translate-y-1;
-    border-color: hsl(var(--teal-light));
-    box-shadow: 0 20px 40px -12px hsla(var(--teal), 0.15);
+  .hero-industries {
+    background-color: hsl(var(--brand-soft-teal));
   }
 
-  /* Primary CTA - Compliance Teal */
+  .hero-services {
+    background-color: hsl(var(--neutral-50));
+  }
+
+  .hero-cta-strip {
+    background-color: hsl(var(--brand-navy));
+  }
+
+  /* Section backgrounds */
+  .bg-soft-blue {
+    background-color: hsl(var(--brand-soft-blue));
+  }
+
+  .bg-soft-teal {
+    background-color: hsl(var(--brand-soft-teal));
+  }
+
+  /* Primary CTA - Navy background, white text */
   .cta-primary {
-    @apply inline-flex items-center justify-center font-semibold px-8 py-4 rounded-xl transition-all duration-300;
-    background-color: hsl(var(--teal));
-    color: hsl(var(--background));
-    box-shadow: 0 4px 14px hsla(var(--teal), 0.35);
+    @apply inline-flex items-center justify-center font-semibold px-8 py-4 rounded-lg transition-all duration-300;
+    background-color: hsl(var(--brand-navy));
+    color: white;
   }
 
   .cta-primary:hover {
-    background-color: hsl(var(--teal-dark));
-    box-shadow: 0 8px 24px hsla(var(--teal), 0.45);
+    background-color: hsl(var(--brand-navy-dark));
     transform: translateY(-2px);
-    color: hsl(var(--background));
+    box-shadow: 0 8px 24px hsla(var(--brand-navy), 0.3);
+    color: white;
   }
 
-  /* Secondary CTA - Outlined */
+  /* Secondary CTA - Transparent with navy border */
   .cta-secondary {
-    @apply inline-flex items-center justify-center font-semibold px-8 py-4 rounded-xl transition-all duration-300;
+    @apply inline-flex items-center justify-center font-semibold px-8 py-4 rounded-lg transition-all duration-300;
     background: transparent;
-    border: 2px solid hsl(var(--teal));
-    color: hsl(var(--teal));
+    border: 2px solid hsl(var(--brand-navy));
+    color: hsl(var(--brand-navy));
   }
 
   .cta-secondary:hover {
-    background-color: hsl(var(--teal));
-    color: hsl(var(--background));
+    background-color: hsl(var(--brand-soft-blue));
+    color: hsl(var(--brand-navy));
     transform: translateY(-2px);
+  }
+
+  /* Teal accent CTA */
+  .cta-teal {
+    @apply inline-flex items-center justify-center font-semibold px-8 py-4 rounded-lg transition-all duration-300;
+    background-color: hsl(var(--brand-teal));
+    color: white;
+  }
+
+  .cta-teal:hover {
+    background-color: hsl(var(--brand-teal-dark));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px hsla(var(--brand-teal), 0.3);
+    color: white;
+  }
+
+  /* Card styles */
+  .card-professional {
+    @apply bg-white rounded-xl p-8 transition-all duration-300;
+    border: 1px solid hsl(var(--neutral-300));
+  }
+
+  .card-professional:hover {
+    border-color: hsl(var(--brand-teal));
+    box-shadow: 0 20px 40px -12px hsla(var(--brand-navy), 0.1);
+    transform: translateY(-4px);
   }
 
   /* Section styles */
   .section-padding {
-    @apply py-24 lg:py-32;
+    @apply py-20 lg:py-28;
   }
 
   .section-title {
-    @apply text-3xl lg:text-5xl font-bold mb-6;
+    @apply text-3xl lg:text-4xl font-bold mb-4;
     font-family: 'Playfair Display', Georgia, serif;
-    color: hsl(var(--navy));
+    color: hsl(var(--brand-navy));
   }
 
   .section-subtitle {
-    @apply text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed;
-    color: hsl(var(--slate));
+    @apply text-lg max-w-3xl mx-auto leading-relaxed;
+    color: hsl(var(--neutral-700));
   }
 
   /* Navigation */
   .nav-link {
     @apply transition-colors duration-200 font-medium text-sm tracking-wide;
-    color: hsl(var(--slate));
+    color: hsl(var(--neutral-700));
   }
   
   .nav-link:hover {
-    color: hsl(var(--teal));
+    color: hsl(var(--brand-teal));
   }
 
   /* Footer */
   .footer-bg {
-    background: hsl(var(--navy));
+    background-color: hsl(var(--brand-navy));
   }
 
   .footer-heading {
     @apply font-semibold text-lg mb-4;
     font-family: 'Inter', sans-serif;
-    color: hsl(var(--background));
+    color: white;
   }
 
   .footer-link {
     @apply transition-colors duration-200 text-sm;
-    color: hsl(215 20% 65%);
+    color: hsl(var(--neutral-300));
   }
   
   .footer-link:hover {
-    color: hsl(var(--teal));
+    color: hsl(var(--brand-teal));
   }
 
-  /* Background patterns */
-  .pattern-dots {
-    background-image: radial-gradient(circle, hsla(var(--teal), 0.08) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  .pattern-grid {
-    background-image: 
-      linear-gradient(hsla(var(--teal), 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, hsla(var(--teal), 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-
-  /* Hero Gradient Backgrounds */
-  .hero-home {
-    background: linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(var(--navy-light)) 100%);
-  }
-  
-  .hero-home::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: hsla(var(--teal), 0.18);
-    pointer-events: none;
-  }
-
-  .hero-about {
-    background-color: hsl(var(--sand));
-  }
-
-  .hero-services {
-    background: linear-gradient(180deg, hsl(var(--teal-light)) 0%, hsl(176 47% 94%) 100%);
-  }
-
-  .hero-engagement {
-    background: linear-gradient(135deg, hsl(var(--slate)) 0%, hsl(var(--teal)) 100%);
-  }
-
-  .hero-contact {
-    background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--teal-light)) 100%);
-  }
-
-  /* Gradient overlays */
-  .gradient-navy {
-    background: linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(var(--navy-light)) 100%);
-  }
-
-  .gradient-teal {
-    background: linear-gradient(135deg, hsl(var(--teal)) 0%, hsl(var(--teal-dark)) 100%);
-  }
-
-  .gradient-slate-teal {
-    background: linear-gradient(135deg, hsl(var(--slate)) 0%, hsl(var(--teal)) 100%);
-  }
-
-  /* Icon containers */
+  /* Icon container */
   .icon-container {
-    @apply w-16 h-16 rounded-2xl flex items-center justify-center transition-transform duration-300;
-    background-color: hsl(var(--teal-light));
+    @apply w-14 h-14 rounded-xl flex items-center justify-center;
+    background-color: hsl(var(--brand-soft-teal));
   }
 
-  .icon-container:hover {
-    transform: scale(1.1);
+  /* Gold accent */
+  .text-gold {
+    color: hsl(var(--brand-gold));
   }
 
-  /* Process line connector */
+  .bg-gold {
+    background-color: hsl(var(--brand-gold));
+  }
+
+  /* Process connector line */
   .process-connector {
-    @apply hidden lg:block absolute top-1/2 -right-6 w-12 h-0.5;
-    background: linear-gradient(90deg, hsl(var(--teal)) 0%, transparent 100%);
+    @apply hidden lg:block absolute top-1/2 -right-8 w-16 h-0.5;
+    background: linear-gradient(90deg, hsl(var(--brand-teal)) 0%, transparent 100%);
   }
 
-  /* Heading enhanced */
-  .heading-enhanced {
-    font-family: 'Playfair Display', Georgia, serif;
-    color: hsl(var(--navy));
+  /* Tag/Badge style */
+  .tag {
+    @apply inline-flex items-center px-3 py-1 text-xs font-medium rounded-full;
+    background-color: hsl(var(--brand-soft-teal));
+    color: hsl(var(--brand-teal));
   }
 
-  /* Status indicators */
-  .status-success {
-    color: hsl(var(--success));
-  }
-
-  .status-warning {
-    color: hsl(var(--warning));
-  }
-
-  .status-error {
-    color: hsl(var(--destructive));
+  /* Pattern backgrounds */
+  .pattern-dots {
+    background-image: radial-gradient(circle, hsla(var(--brand-navy), 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 }

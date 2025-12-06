@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -6,39 +7,52 @@ const Footer = () => {
   const services = [
     { name: "Policy & Control Development", path: "/services#policy" },
     { name: "Governance & Process Design", path: "/services#governance" },
+    { name: "Staffing & Responsibility Modeling", path: "/services#staffing" },
     { name: "Compliance & Audit Readiness", path: "/services#compliance" },
     { name: "IT Governance & Advisory", path: "/services#it-governance" }
   ];
 
   const industries = [
-    { name: "Medical Practices", path: "/industries" },
-    { name: "Utilities & Infrastructure", path: "/industries" },
-    { name: "Compliance-Driven Firms", path: "/industries" }
+    { name: "Medical Practices", path: "/industries#medical" },
+    { name: "Utilities & Infrastructure", path: "/industries#utilities" },
+    { name: "Compliance-Driven Firms", path: "/industries#compliance" }
+  ];
+
+  const company = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Approach", path: "/approach" },
+    { name: "Resources", path: "/resources" },
+    { name: "Contact", path: "/contact" }
   ];
 
   return (
-    <footer className="bg-navy py-20">
+    <footer className="footer-bg py-16 lg:py-20">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
-          <div className="lg:col-span-1">
-            <h3 className="text-xl font-bold text-white mb-4">Momentum Edge Consulting</h3>
-            <p className="text-white/70 leading-relaxed mb-6">
+          <div>
+            <Link to="/" className="inline-block mb-6">
+              <span className="text-xl font-bold text-white font-heading">
+                Momentum Edge Consulting
+              </span>
+            </Link>
+            <p className="text-neutral-300 text-sm leading-relaxed mb-6">
               Clarity. Structure. Compliance. Confidence.
             </p>
-            <p className="text-white/50 text-sm leading-relaxed">
-              Helping regulated organizations design policies, controls, and governance structures 
-              for operational confidence.
+            <p className="text-neutral-400 text-sm leading-relaxed">
+              Helping regulated organizations design policies, controls, and governance 
+              structures for operational confidence.
             </p>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-semibold text-lg mb-4">Services</h4>
+            <h4 className="footer-heading">Services</h4>
             <ul className="space-y-3">
-              {services.map((service, index) => (
-                <li key={index}>
-                  <Link to={service.path} className="text-white/60 hover:text-teal transition-colors text-sm">
+              {services.map((service) => (
+                <li key={service.path}>
+                  <Link to={service.path} className="footer-link">
                     {service.name}
                   </Link>
                 </li>
@@ -48,41 +62,64 @@ const Footer = () => {
 
           {/* Industries */}
           <div>
-            <h4 className="text-white font-semibold text-lg mb-4">Who We Serve</h4>
+            <h4 className="footer-heading">Who We Serve</h4>
             <ul className="space-y-3">
-              {industries.map((industry, index) => (
-                <li key={index}>
-                  <Link to={industry.path} className="text-white/60 hover:text-teal transition-colors text-sm">
+              {industries.map((industry) => (
+                <li key={industry.path}>
+                  <Link to={industry.path} className="footer-link">
                     {industry.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <h4 className="footer-heading mt-8">Company</h4>
+            <ul className="space-y-3">
+              {company.map((item) => (
+                <li key={item.path}>
+                  <Link to={item.path} className="footer-link">
+                    {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Quick Links */}
+          {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold text-lg mb-4">Company</h4>
-            <ul className="space-y-3">
-              <li><Link to="/" className="text-white/60 hover:text-teal transition-colors text-sm">Home</Link></li>
-              <li><Link to="/about" className="text-white/60 hover:text-teal transition-colors text-sm">About</Link></li>
-              <li><Link to="/contact" className="text-white/60 hover:text-teal transition-colors text-sm">Contact</Link></li>
+            <h4 className="footer-heading">Contact Us</h4>
+            <ul className="space-y-4">
+              <li>
+                <a 
+                  href="mailto:momentumedgeconsulting@gmail.com"
+                  className="footer-link flex items-start gap-3"
+                >
+                  <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                  <span>momentumedgeconsulting@gmail.com</span>
+                </a>
+              </li>
             </ul>
+
+            <div className="mt-8">
+              <a
+                href="mailto:momentumedgeconsulting@gmail.com?subject=Strategy Session Request"
+                className="cta-teal text-sm px-6 py-3"
+              >
+                Schedule a Strategy Session
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-white/50 text-sm mb-4 md:mb-0">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-neutral-400 text-sm">
               © {currentYear} Momentum Edge Consulting. All rights reserved.
             </p>
-            <a 
-              href="mailto:momentumedgeconsulting@gmail.com"
-              className="text-white/60 hover:text-teal transition-colors text-sm"
-            >
-              momentumedgeconsulting@gmail.com
-            </a>
+            <p className="text-neutral-500 text-sm">
+              Strategic collaboration with IDMA3 for GRC expertise
+            </p>
           </div>
         </div>
       </div>
